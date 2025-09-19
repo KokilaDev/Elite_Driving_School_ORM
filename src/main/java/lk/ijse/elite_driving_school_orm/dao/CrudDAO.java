@@ -1,0 +1,23 @@
+package lk.ijse.elite_driving_school_orm.dao;
+
+import lk.ijse.elite_driving_school_orm.entity.Student;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
+
+public interface CrudDAO<T> extends SuperDAO {
+    List<T> getAll() throws SQLException;
+
+    Student getLastId() throws SQLException;
+
+    boolean save(T t) throws SQLException;
+
+    boolean update(T t) throws SQLException;
+
+    boolean delete(String id) throws SQLException;
+
+    List<String> getAllIds() throws SQLException;
+
+    Optional<T> findById(String id) throws SQLException;
+}

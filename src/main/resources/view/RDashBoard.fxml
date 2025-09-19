@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ancRDashBoard" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: #181A2F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elite_driving_school_orm.controller.RDashBoardController">
+   <children>
+      <VBox opacity="0.5" prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: #181A2F;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="800.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnDashboard" style="-fx-background-color: #181A2F;" text="DASHBOARD" textFill="#ecf0f1">
+                     <font>
+                        <Font name="System Bold Italic" size="32.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="btnStudents" mnemonicParsing="false" onAction="#btnStudents" style="-fx-background-color: #181A2F;" text="Students" textFill="#ecf0f1">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="btnLessons" mnemonicParsing="false" onAction="#btnLessons" style="-fx-background-color: #181A2F;" text="Lessons" textFill="#ecf0f1">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="btnPayments" mnemonicParsing="false" onAction="#btnPayments" style="-fx-background-color: #181A2F;" text="Payments" textFill="#ecf0f1">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="320.0" prefWidth="250.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnLogout" prefWidth="100.0" style="-fx-background-radius: 20;" text="Log out" textFill="#181a2f">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="ancRDashBoards" layoutX="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="800.0" opacity="0.25" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../images/dashboard.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<AnchorPane style="-fx-background-color: #181A2F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elite_driving_school_orm.controller.LoadingScreenController">
+   <children>
+      <StackPane prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ProgressIndicator />
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

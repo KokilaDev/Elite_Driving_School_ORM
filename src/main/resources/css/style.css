@@ -1,0 +1,4 @@
+.text-field {
+    -fx-text-fill: #ecf0f1;
+    -fx-prompt-text-fill: derive(#ecf0f1, -30%);
+}

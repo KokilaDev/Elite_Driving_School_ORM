@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane style="-fx-background-color: #181A2F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elite_driving_school_orm.controller.DashboardConentController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" opacity="0.25" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../images/dashboard.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <HBox layoutX="26.0" layoutY="30.0" opacity="0.75" prefHeight="125.0" prefWidth="225.0" style="-fx-background-color: #181A2F; -fx-background-radius: 40;">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="20.0" right="10.0" top="40.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../images/user_icon_149851.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="125.0" prefWidth="135.0">
+                     <children>
+                        <Label text="Students" textFill="#ecf0f1">
+                           <VBox.margin>
+                              <Insets left="10.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblStudentCount" text="0" textFill="#ecf0f1">
+                           <VBox.margin>
+                              <Insets left="50.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox layoutX="287.0" layoutY="30.0" opacity="0.75" prefHeight="125.0" prefWidth="225.0" style="-fx-background-color: #181A2F; -fx-background-radius: 40;">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/training-course.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" right="10.0" top="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox prefHeight="125.0" prefWidth="135.0">
+                     <children>
+                        <Label text="Courses" textFill="#ecf0f1">
+                           <VBox.margin>
+                              <Insets left="10.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblCourseCount" text="0" textFill="#ecf0f1">
+                           <VBox.margin>
+                              <Insets left="50.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox layoutX="549.0" layoutY="30.0" opacity="0.75" prefHeight="125.0" prefWidth="225.0" style="-fx-background-color: #181A2F; -fx-background-radius: 40;">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="20.0" right="10.0" top="40.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../images/my-course.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="125.0" prefWidth="135.0">
+                     <children>
+                        <Label text="Instructors" textFill="#ecf0f1">
+                           <VBox.margin>
+                              <Insets left="10.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblInstructorCount" text="0" textFill="#ecf0f1">
+                           <VBox.margin>
+                              <Insets left="50.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
