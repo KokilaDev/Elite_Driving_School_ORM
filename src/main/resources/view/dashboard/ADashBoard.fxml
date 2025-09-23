@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ancADashBoard" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: #181A2F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elite_driving_school_orm.controller.ADashBoardController">
+<AnchorPane fx:id="ancADashBoard" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: #181A2F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elite_driving_school_orm.controller.dashboard.ADashBoardController">
    <children>
       <VBox opacity="0.5" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #181A2F;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -104,7 +104,7 @@
       </VBox>
       <ImageView fitHeight="600.0" fitWidth="800.0" layoutX="250.0" opacity="0.25" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../images/dashboard.jpg" />
+            <Image url="@../../images/dashboard.jpg" />
          </image>
       </ImageView>
       <AnchorPane fx:id="ancADashBoards" layoutX="250.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />

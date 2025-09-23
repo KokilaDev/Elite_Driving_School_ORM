@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ancUpdateStudent" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elite_driving_school_orm.controller.student.UpdateStudentController">
+    <children>
+        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+            <HBox alignment="TOP_RIGHT">
+               <children>
+                  <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnBack" prefWidth="50.0" stylesheets="@../../css/style.css" text="&lt;&lt;">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+                <HBox alignment="CENTER_LEFT">
+                    <children>
+                        <Label text="Student Details" textFill="#181a2f">
+                            <font>
+                                <Font name="System Bold Italic" size="32.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="20.0">
+                            <children>
+                                <Label text="Student ID" textFill="#181a2f">
+                                    <font>
+                                        <Font name="System Bold" size="17.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lblStudentID" style="-fx-border-color: #181A2F; -fx-border-width: 0 0 1px 0;" text="S001" textFill="#181a2f">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="20.0" GridPane.columnIndex="1">
+                            <children>
+                                <Label text="Student Name" textFill="#181a2f">
+                                    <font>
+                                        <Font name="System Bold" size="17.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txtName" prefWidth="300.0" style="-fx-background-color: #ffffff; -fx-border-color: #181A2F; -fx-border-width: 0 0 1px 0;" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                    </VBox.margin>
+                </GridPane>
+                <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+                    <children>
+                        <Label prefWidth="80.0" text="Address" textFill="#181a2f">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="System Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtAddress" prefWidth="350.0" style="-fx-background-color: #ffffff; -fx-border-color: #181A2F; -fx-border-width: 0 0 1px 0;">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+                            <children>
+                                <Label prefWidth="80.0" text="NIC No." textFill="#181a2f">
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                    </HBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="17.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txtNIC" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #181A2F; -fx-border-width: 0 0 1px 0;">
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+                                    </HBox.margin>
+                                </TextField>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="1">
+                            <children>
+                                <Label prefWidth="80.0" text="Email" textFill="#181a2f">
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                    </HBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="17.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txtEmail" prefWidth="300.0" style="-fx-background-color: #ffffff; -fx-border-color: #181A2F; -fx-border-width: 0 0 1px 0;">
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+                                    </HBox.margin>
+                                </TextField>
+                            </children>
+                        </HBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
+                    </VBox.margin>
+                </GridPane>
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <HBox>
+                            <children>
+                                <Label text="Contact No." textFill="#181a2f">
+                                    <font>
+                                        <Font name="System Bold" size="17.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <TextField fx:id="txtContact" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #181A2F; -fx-border-width: 0 0 1px 0;">
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+                                    </HBox.margin>
+                                </TextField>
+                            </children>
+                        </HBox>
+                        <HBox GridPane.columnIndex="1">
+                            <children>
+                                <Label text="Register Date" textFill="#181a2f">
+                                    <font>
+                                        <Font name="System Bold" size="17.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <DatePicker fx:id="datePicker" prefWidth="150.0" promptText="mm/dd/yyyy" style="-fx-background-color: #ffffff; -fx-border-color: #181A2F; -fx-border-width: 0 0 1px 0;">
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+                                    </HBox.margin>
+                                </DatePicker>
+                            </children>
+                        </HBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="20.0" top="10.0" />
+                    </VBox.margin>
+                </GridPane>
+                <HBox opacity="0.5" style="-fx-border-color: #181A2F; -fx-border-width: 1px 0 0 0;">
+                    <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Label text="Enrollment" textFill="#181a2f">
+                            <font>
+                                <Font name="System Bold Italic" size="25.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                          <ListView fx:id="courseListView" opacity="0.15" styleClass="gradient-list" stylesheets="@../../css/style.css">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </ListView>
+                        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
+                            <children>
+                                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAdd" prefWidth="100.0" stylesheets="@../../css/style.css" text="Add &gt;&gt;">
+                                    <VBox.margin>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#btnRemove" prefWidth="100.0" stylesheets="@../../css/style.css" text="&lt;&lt; Remove">
+                                    <VBox.margin>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </VBox>
+                          <ListView fx:id="selectedCoursesListView" opacity="0.15" styleClass="gradient-list" stylesheets="@../../css/style.css" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </ListView>
+                    </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+                </GridPane>
+                <HBox alignment="CENTER_RIGHT">
+                    <children>
+                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#btnUpdate" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #44bd32;" text="Update" textFill="#ecf0f1">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#btnCancel" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #EA2027;" text="Cancel" textFill="#ecf0f1">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

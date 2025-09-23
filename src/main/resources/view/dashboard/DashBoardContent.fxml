@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane style="-fx-background-color: #181A2F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elite_driving_school_orm.controller.DashboardConentController">
+<AnchorPane style="-fx-background-color: #181A2F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elite_driving_school_orm.controller.dashboard.DashboardConentController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" opacity="0.25" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../images/dashboard.jpg" />
+            <Image url="@../../images/dashboard.jpg" />
          </image>
       </ImageView>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
@@ -26,7 +26,7 @@
                         <Insets left="20.0" right="10.0" top="40.0" />
                      </HBox.margin>
                      <image>
-                        <Image url="@../images/user_icon_149851.png" />
+                        <Image url="@../../images/user_icon_149851.png" />
                      </image>
                   </ImageView>
                   <VBox prefHeight="125.0" prefWidth="135.0">
@@ -55,7 +55,7 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/training-course.png" />
+                        <Image url="@../../images/training-course.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="20.0" right="10.0" top="40.0" />
@@ -90,7 +90,7 @@
                         <Insets left="20.0" right="10.0" top="40.0" />
                      </HBox.margin>
                      <image>
-                        <Image url="@../images/my-course.png" />
+                        <Image url="@../../images/my-course.png" />
                      </image>
                   </ImageView>
                   <VBox prefHeight="125.0" prefWidth="135.0">

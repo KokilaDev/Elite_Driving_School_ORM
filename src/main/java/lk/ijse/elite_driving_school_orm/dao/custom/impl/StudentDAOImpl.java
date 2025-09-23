@@ -146,18 +146,18 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public Optional<Student> findStudentByNic(String nic) throws SQLException {
-        ResultSet resultSet = SQLUtil.execute("SELECT * FROM student WHERE nic = ?", nic);
-        if (resultSet.next()) {
-            return Optional.of(new Student(
-                    resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    resultSet.getString(4),
-                    resultSet.getString(5),
-                    resultSet.getString(6),
-                    resultSet.getString(7)
-            ));
-        }
+//        ResultSet resultSet = SQLUtil.execute("SELECT * FROM student WHERE nic = ?", nic);
+//        if (resultSet.next()) {
+//            return Optional.of(new Student(
+//                    resultSet.getString(1),
+//                    resultSet.getString(2),
+//                    resultSet.getString(3),
+//                    resultSet.getString(4),
+//                    resultSet.getString(5),
+//                    resultSet.getString(6),
+//                    resultSet.getString(7)
+//            ));
+//        }
         return Optional.empty();
     }
 

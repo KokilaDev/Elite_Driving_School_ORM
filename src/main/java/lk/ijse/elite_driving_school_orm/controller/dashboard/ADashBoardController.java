@@ -1,4 +1,4 @@
-package lk.ijse.elite_driving_school_orm.controller;
+package lk.ijse.elite_driving_school_orm.controller.dashboard;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,46 +23,31 @@ public class ADashBoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        navigateTo("/view/DashBoardContent.fxml");
+        NavigationUtil.navigateTo(ancADashBoards,"/view/dashboard/DashBoardContent.fxml");
     }
 
     public void btnDashboard(ActionEvent actionEvent) {
-        navigateTo("/view/DashBoardContent.fxml");
+        NavigationUtil.navigateTo(ancADashBoards,"/view/dashboard/DashBoardContent.fxml");
     }
 
     public void btnStudents(ActionEvent actionEvent) {
-        navigateTo("/view/Student.fxml");
+        NavigationUtil.navigateTo(ancADashBoards,"/view/student/MainStudent.fxml");
     }
 
     public void btnCourses(ActionEvent actionEvent) {
-        navigateTo("/view/Course.fxml");
+        NavigationUtil.navigateTo(ancADashBoards,"/view/course/MainCourse.fxml");
     }
 
     public void btnInstructors(ActionEvent actionEvent) {
-        navigateTo("/view/Instructor.fxml");
+        NavigationUtil.navigateTo(ancADashBoards,"/view/instructor/MainInstructor.fxml");
     }
 
     public void btnLessons(ActionEvent actionEvent) {
-        navigateTo("/view/Lesson.fxml");
+        NavigationUtil.navigateTo(ancADashBoards,"/view/lesson/MainLesson.fxml");
     }
 
     public void btnPayments(ActionEvent actionEvent) {
-        navigateTo("/view/Payment.fxml");
-    }
-
-    private void navigateTo(String path) {
-        try {
-            ancADashBoards.getChildren().clear();
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource(path));
-
-            anchorPane.prefWidthProperty().bind(ancADashBoards.widthProperty());
-            anchorPane.prefHeightProperty().bind(ancADashBoards.heightProperty());
-
-            ancADashBoards.getChildren().add(anchorPane);
-        } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR, "Page not found..!").show();
-            e.printStackTrace();
-        }
+        NavigationUtil.navigateTo(ancADashBoards,"/view/payment/MainPayment.fxml");
     }
 
     public void btnLogout(ActionEvent actionEvent) throws IOException {

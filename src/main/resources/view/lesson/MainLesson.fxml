@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.Button?>
+<AnchorPane fx:id="ancLesson" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elite_driving_school_orm.controller.lesson.MainLessonController">
+   <children>
+      <VBox spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Lessons" textFill="#181a2f">
+                     <font>
+                        <Font name="System Bold Italic" size="32.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT">
+               <children>
+                  <Button fx:id="btnAddNewLesson" mnemonicParsing="false" onAction="#btnAddNewLesson" stylesheets="@../../css/style.css" text="+ add new lesson">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <TableView fx:id="tblLesson">
+              <columns>
+                <TableColumn fx:id="colLessonID" prefWidth="75.0" text="Lesson ID" />
+                <TableColumn fx:id="colDate" prefWidth="75.0" text="Date" />
+                  <TableColumn fx:id="colTime" prefWidth="75.0" text="Time" />
+                  <TableColumn fx:id="colCourseID" prefWidth="75.0" text="Course ID" />
+                  <TableColumn fx:id="colInstructorID" prefWidth="75.0" text="Instructor ID" />
+                  <TableColumn fx:id="colStudentID" prefWidth="75.0" text="Student ID" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </TableView>
+            <HBox alignment="CENTER_RIGHT">
+               <children>
+                  <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#btnUpdate" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #44bd32;" text="Update" textFill="#ecf0f1">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#btnDelete" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #EA2027;" text="Delete" textFill="#ecf0f1">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children></HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,4 +1,95 @@
 .text-field {
     -fx-text-fill: #ecf0f1;
     -fx-prompt-text-fill: derive(#ecf0f1, -30%);
+    -fx-background-color: #ffffff;
+    -fx-border-color: #181a2f;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.text-area {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #181a2f;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #181a2f;
+}
+
+.text-area:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px;
+    -fx-background-color: #ffffff;
+}
+
+.button{
+    -fx-background-color: linear-gradient(
+            to right,
+            #74b9ff 13%,
+            #4C93FD 99.99%,
+            #3c40c6 100%
+    );
+    -fx-text-fill: white;
+}
+
+.button-save {
+    -fx-text-fill: #ecf0f1;
+    -fx-pref-width: 100;
+    -fx-background-color:   #44bd32;
+    -fx-background-radius: 20;
+}
+
+.button-update {
+    -fx-text-fill: #ecf0f1;
+    -fx-pref-width: 100;
+    -fx-background-color:  #44bd32;
+    -fx-background-radius: 20;
+}
+
+.button-delete {
+    -fx-text-fill: #ecf0f1;
+    -fx-pref-width: 100;
+    -fx-background-color:   #EA2027;
+    -fx-background-radius: 20;
+}
+
+.gradient-list {
+    -fx-background-color: linear-gradient(to bottom, #4C93FD, #341f97);
+    -fx-background-insets: 0;
+    -fx-background-radius: 8;
+    -fx-padding: 6;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.list-cell:selected {
+    -fx-background-color: rgba(255,255,255,0.15);
+}
+
+.list-view:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+#btnAdd {
+    -fx-background-color: linear-gradient(
+            to right,
+            #74b9ff 13%,
+            #4C93FD 99.99%,
+            #3c40c6 100%
+    );
+    -fx-text-fill: white;
+}
+
+#btnRemove {
+    -fx-background-color: linear-gradient(
+            to left,
+            #74b9ff 13%,
+            #4C93FD 99.99%,
+            #3c40c6 100%
+    );
+    -fx-text-fill: white;
 }

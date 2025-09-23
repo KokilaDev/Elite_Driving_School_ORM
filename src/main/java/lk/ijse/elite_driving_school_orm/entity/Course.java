@@ -27,9 +27,12 @@ public class Course {
     @Column(name = "fee", length = 10)
     private double fee;
 
-    @ManyToMany(mappedBy = "courses")
-    private List<Student> students;
-
     @OneToMany(mappedBy = "course")
     private List<Lesson> lessons;
+
+    @OneToMany(mappedBy = "course")
+    private List<Student_Course> studentCourses;
+
+    @OneToMany(mappedBy = "course")
+    private List<Course_Instructor> courseInstructors;
 }

@@ -1,12 +1,12 @@
-package lk.ijse.elite_driving_school_orm.controller;
+package lk.ijse.elite_driving_school_orm.controller.dashboard;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,38 +21,23 @@ public class RDashBoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        navigateTo("/view/DashboardContent.fxml");
+        NavigationUtil.navigateTo(ancRDashBoards, "/view/dashboard/DashboardContent.fxml");
     }
 
     public void btnDashboard(ActionEvent actionEvent) {
-        navigateTo("/view/DashboardContent.fxml");
+        NavigationUtil.navigateTo(ancRDashBoards, "/view/dashboard/DashboardContent.fxml");
     }
     
     public void btnStudents(ActionEvent actionEvent) {
-        navigateTo("/view/Student.fxml");
+        NavigationUtil.navigateTo(ancRDashBoards, "/view/student/MainStudent.fxml");
     }
 
     public void btnLessons(ActionEvent actionEvent) {
-        navigateTo("/view/Lesson.fxml");
+        NavigationUtil.navigateTo(ancRDashBoards, "/view/lesson/MainLesson.fxml");
     }
 
     public void btnPayments(ActionEvent actionEvent) {
-        navigateTo("/view/Payment.fxml");
-    }
-
-    private void navigateTo(String path) {
-        try {
-            ancRDashBoards.getChildren().clear();
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource(path));
-
-            anchorPane.prefWidthProperty().bind(ancRDashBoards.widthProperty());
-            anchorPane.prefHeightProperty().bind(ancRDashBoards.heightProperty());
-
-            ancRDashBoards.getChildren().add(anchorPane);
-        } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR, "Page not found..!").show();
-            e.printStackTrace();
-        }
+        NavigationUtil.navigateTo(ancRDashBoards, "/view/payment/MainPayment.fxml");
     }
 
     public void btnLogout(ActionEvent actionEvent) throws IOException {

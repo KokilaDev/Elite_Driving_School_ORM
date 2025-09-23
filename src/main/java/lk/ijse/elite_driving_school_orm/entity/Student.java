@@ -33,6 +33,23 @@ public class Student {
     @Column(name = "nic")
     private String nic;
 
-    @Column(name = "regDate")
+    @Column(name = "reg_date")
     private String regDate;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "student_course",
+//            joinColumns = @JoinColumn(name = "student_id"),
+//            inverseJoinColumns = @JoinColumn(name = "course_id")
+//    )
+//    private List<Course> courses;
+
+    @OneToMany(mappedBy = "student")
+    private List<Lesson> lessons;
+
+    @OneToMany(mappedBy = "student")
+    private List<Payment> payments;
+
+    @OneToMany(mappedBy = "student")
+    private List<Student_Course> studentCourses;
 }

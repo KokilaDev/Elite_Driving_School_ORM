@@ -13,4 +13,10 @@ module lk.ijse.elite_driving_school_orm {
 
     exports lk.ijse.elite_driving_school_orm;
     exports lk.ijse.elite_driving_school_orm.util;
+    opens lk.ijse.elite_driving_school_orm.controller.dashboard to javafx.fxml;
+    opens lk.ijse.elite_driving_school_orm.controller.course to javafx.fxml;
+    opens lk.ijse.elite_driving_school_orm.controller.instructor to javafx.fxml;
+    opens lk.ijse.elite_driving_school_orm.controller.student to javafx.fxml;
+    opens lk.ijse.elite_driving_school_orm.controller.lesson to javafx.fxml;
+    opens lk.ijse.elite_driving_school_orm.controller.payment to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package lk.ijse.elite_driving_school_orm.controller;
+package lk.ijse.elite_driving_school_orm.controller.dashboard;
 
 import javafx.scene.control.Label;
 
