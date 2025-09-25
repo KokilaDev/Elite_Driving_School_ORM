@@ -3,7 +3,6 @@ package lk.ijse.elite_driving_school_orm.dto;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @AllArgsConstructor

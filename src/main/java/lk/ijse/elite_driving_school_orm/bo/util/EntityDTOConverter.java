@@ -1,7 +1,7 @@
 package lk.ijse.elite_driving_school_orm.bo.util;
 
-import lk.ijse.elite_driving_school_orm.dto.StudentDTO;
-import lk.ijse.elite_driving_school_orm.entity.Student;
+import lk.ijse.elite_driving_school_orm.dto.*;
+import lk.ijse.elite_driving_school_orm.entity.*;
 
 public class EntityDTOConverter {
     public StudentDTO getStudentDTO(Student student) {
@@ -28,5 +28,91 @@ public class EntityDTOConverter {
         return student;
     }
 
+    public CourseDTO getCourseDTO(Course course) {
+        CourseDTO courseDTO = new CourseDTO();
+        courseDTO.setCourseId(course.getCourseId());
+        courseDTO.setName(course.getName());
+        courseDTO.setDuration(course.getDuration());
+        courseDTO.setFee(course.getFee());
+        return courseDTO;
+    }
 
+    public Course getCourse(CourseDTO courseDTO) {
+        Course course = new Course();
+        course.setCourseId(courseDTO.getCourseId());
+        course.setName(courseDTO.getName());
+        course.setDuration(courseDTO.getDuration());
+        course.setFee(courseDTO.getFee());
+        return course;
+    }
+
+    public InstructorDTO getInstructorDTO(Instructor instructor) {
+        InstructorDTO instructorDTO = new InstructorDTO();
+        instructorDTO.setInstructorId(instructor.getInstructorId());
+        instructorDTO.setName(instructor.getName());
+        instructorDTO.setEmail(instructor.getEmail());
+        instructorDTO.setPhone(instructor.getPhone());
+        instructorDTO.setSpecialization(instructor.getSpecialization());
+        return instructorDTO;
+    }
+
+    public Instructor getInstructor(InstructorDTO instructorDTO) {
+        Instructor instructor = new Instructor();
+        instructor.setInstructorId(instructorDTO.getInstructorId());
+        instructor.setName(instructorDTO.getName());
+        instructor.setEmail(instructorDTO.getEmail());
+        instructor.setPhone(instructorDTO.getPhone());
+        instructor.setSpecialization(instructorDTO.getSpecialization());
+        return instructor;
+    }
+
+    public LessonDTO getLessonDTO(Lesson lesson) {
+        LessonDTO lessonDTO = new LessonDTO();
+        lessonDTO.setLessonId(lesson.getLessonId());
+        lessonDTO.setDate(lesson.getDate());
+        lessonDTO.setTime(lessonDTO.getTime());
+        return lessonDTO;
+    }
+
+    public Lesson getLesson(LessonDTO lessonDTO) {
+        Lesson lesson = new Lesson();
+        lesson.setLessonId(lessonDTO.getLessonId());
+        lesson.setDate(lessonDTO.getDate());
+        lesson.setTime(lessonDTO.getTime());
+        return lesson;
+    }
+
+    public PaymentDTO getPaymentDTO(Payment payment) {
+        PaymentDTO paymentDTO = new PaymentDTO();
+        paymentDTO.setPaymentId(payment.getPaymentId());
+        paymentDTO.setAmount(payment.getAmount());
+        paymentDTO.setDate(payment.getDate());
+        paymentDTO.setStatus(payment.getStatus());
+        return paymentDTO;
+    }
+
+    public Payment getPayment(PaymentDTO paymentDTO) {
+        Payment payment = new Payment();
+        payment.setPaymentId(paymentDTO.getPaymentId());
+        payment.setAmount(paymentDTO.getAmount());
+        payment.setDate(paymentDTO.getDate());
+        payment.setStatus(paymentDTO.getStatus());
+        return payment;
+    }
+
+    public StudentCourseDTO getStudentCourseDTO(Student_Course student_course) {
+        return null;
+    }
+
+    public Student_Course getStudentCourse(StudentCourseDTO studentCourseDTO) {
+        return null;
+    }
+
+    public CourseInstructorDTO getCourseInstructorDTO(Course_Instructor course_Instructor) {
+        return null;
+    }
+
+    public Course_Instructor getCourseInstructor(CourseInstructorDTO courseInstructorDTO) {
+        return null;
+    }
 }

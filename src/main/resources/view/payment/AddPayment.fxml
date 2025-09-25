@@ -99,7 +99,7 @@
                            <Font name="System Bold" size="17.0" />
                         </font>
                      </Label>
-                     <ListView fx:id="courseListView" opacity="0.15" styleClass="gradient-list" stylesheets="@../../css/style.css">
+                     <ListView fx:id="courseListView">
                         <HBox.margin>
                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                         </HBox.margin>
@@ -108,23 +108,73 @@
                </HBox>
             </children>
          </GridPane>
-         <HBox>
-            <children>
-                   <Label prefWidth="100.0" text="Amount" textFill="#181a2f">
-                  <HBox.margin>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                  </HBox.margin>
-                  <font>
-                     <Font name="System Bold" size="17.0" />
-                  </font>
-               </Label>
-                   <TextField fx:id="txtAmount" styleClass="text-field" stylesheets="@../../css/style.css">
-                  <HBox.margin>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                  </HBox.margin>
-               </TextField>
-            </children>
-         </HBox>
+            <GridPane>
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <HBox>
+                        <children>
+                            <Label prefWidth="120.0" text="Total Amount" textFill="#181a2f">
+                                <HBox.margin>
+                                    <Insets bottom="10.0" right="10.0" top="10.0" />
+                                </HBox.margin>
+                                <font>
+                                    <Font name="System Bold" size="17.0" />
+                                </font>
+                            </Label>
+                            <Label text="Rs.">
+                                <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                </HBox.margin>
+                                <font>
+                                    <Font name="System Bold" size="14.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="lblAmount" text="0.00" textFill="#181a2f">
+                                <font>
+                                    <Font name="System Bold" size="14.0" />
+                                </font>
+                                <HBox.margin>
+                                    <Insets bottom="10.0" right="10.0" top="10.0" />
+                                </HBox.margin>
+                            </Label>
+                        </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                        <children>
+                            <Label text="Amount paid" textFill="#181a2f">
+                                <font>
+                                    <Font name="System Bold" size="17.0" />
+                                </font>
+                                <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                </HBox.margin>
+                            </Label>
+                            <Label text="Rs.">
+                                <font>
+                                    <Font name="System Bold" size="14.0" />
+                                </font>
+                                <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="15.0" />
+                                </HBox.margin>
+                            </Label>
+                            <TextField fx:id="txtAmountPaid" styleClass="text-field" stylesheets="@../../css/style.css">
+                                <HBox.margin>
+                                    <Insets bottom="10.0" right="10.0" top="10.0" />
+                                </HBox.margin>
+                            </TextField>
+                        </children>
+                    </HBox>
+                </children>
+                <VBox.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </VBox.margin>
+            </GridPane>
          <HBox>
             <children>
                    <Label prefWidth="100.0" text="Date" textFill="#181a2f">

@@ -45,8 +45,8 @@ public class Student {
 //    )
 //    private List<Course> courses;
 
-    @OneToMany(mappedBy = "student")
-    private List<Lesson> lessons;
+//    @OneToMany(mappedBy = "student")
+//    private List<Lesson> lessons;
 
     @OneToMany(mappedBy = "student")
     private List<Payment> payments;

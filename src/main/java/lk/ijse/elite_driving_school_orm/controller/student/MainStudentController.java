@@ -1,16 +1,13 @@
 package lk.ijse.elite_driving_school_orm.controller.student;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import lk.ijse.elite_driving_school_orm.bo.BOFactory;
 import lk.ijse.elite_driving_school_orm.bo.BOTypes;
 import lk.ijse.elite_driving_school_orm.bo.custom.StudentBO;
@@ -18,7 +15,6 @@ import lk.ijse.elite_driving_school_orm.bo.exception.InUseException;
 import lk.ijse.elite_driving_school_orm.dto.tm.StudentTM;
 import lk.ijse.elite_driving_school_orm.util.AuthUtil;
 import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
-import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -160,7 +156,7 @@ public class MainStudentController implements Initializable {
 //                if (isDeleted) {
                 resetPage();
                 new Alert(
-                        Alert.AlertType.INFORMATION, "Customer deleted successfully."
+                        Alert.AlertType.INFORMATION, "Student deleted successfully."
                 ).show();
 //                } else {
 //                    new Alert(Alert.AlertType.ERROR, "Fail to delete customer.").show();

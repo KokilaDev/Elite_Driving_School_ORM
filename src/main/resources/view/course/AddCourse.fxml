@@ -149,7 +149,7 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="lessonsListView" opacity="0.15" styleClass="gradient-list" stylesheets="@../../css/style.css" GridPane.columnIndex="1" />
+                  <ListView fx:id="lessonsListView" GridPane.columnIndex="1" />
                   <VBox alignment="CENTER_LEFT" GridPane.columnIndex="2">
                      <children>
                         <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAdd" prefWidth="100.0" stylesheets="@../../css/style.css" text="Add &gt;&gt;">
@@ -170,7 +170,7 @@
                         </Button>
                      </children>
                   </VBox>
-                  <ListView fx:id="selectedLessonsListView" opacity="0.15" styleClass="gradient-list" stylesheets="@../../css/style.css" GridPane.columnIndex="3" />
+                  <ListView fx:id="selectedLessonsListView" GridPane.columnIndex="3" />
                </children>
             </GridPane>
       

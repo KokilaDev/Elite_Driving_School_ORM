@@ -16,15 +16,18 @@ public class Lesson {
     @Column(name = "lesson_id")
     private String lessonId;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "date")
     private String date;
 
     @Column(name = "time")
     private String time;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+//    @ManyToOne
+//    @JoinColumn(name = "student_id")
+//    private Student student;
 
     @ManyToOne
     @JoinColumn(name = "course_id")

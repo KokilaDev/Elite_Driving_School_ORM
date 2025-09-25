@@ -11,11 +11,11 @@ public class MainLessonController {
     public Button btnAddNewLesson;
     public TableView tblLesson;
     public TableColumn colLessonID;
+    public TableColumn colDescription;
     public TableColumn colDate;
     public TableColumn colTime;
     public TableColumn colCourseID;
     public TableColumn colInstructorID;
-    public TableColumn colStudentID;
     public Button btnUpdate;
     public Button btnDelete;
 

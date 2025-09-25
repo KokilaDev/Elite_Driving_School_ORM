@@ -11,7 +11,8 @@ public class UpdatePaymentController {
     public Label lblPaymentID;
     public ComboBox cmbStudent;
     public ListView courseListView;
-    public TextField txtAmount;
+    public Label lblAmount;
+    public TextField txtAmountPaid;
     public DatePicker dpDate;
     public ComboBox cmbStatus;
     public Button btnUpdate;
