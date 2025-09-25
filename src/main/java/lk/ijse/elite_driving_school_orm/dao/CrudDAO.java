@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface CrudDAO<T> extends SuperDAO {
     List<T> getAll() throws SQLException;
 
-    Student getLastId() throws SQLException;
+    String getLastId() throws SQLException;
 
     boolean save(T t) throws SQLException;
 

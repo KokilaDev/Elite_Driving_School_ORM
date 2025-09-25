@@ -1,46 +1,174 @@
 package lk.ijse.elite_driving_school_orm.controller.student;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import lk.ijse.elite_driving_school_orm.bo.BOFactory;
+import lk.ijse.elite_driving_school_orm.bo.BOTypes;
+import lk.ijse.elite_driving_school_orm.bo.custom.StudentBO;
+import lk.ijse.elite_driving_school_orm.bo.exception.InUseException;
 import lk.ijse.elite_driving_school_orm.dto.tm.StudentTM;
+import lk.ijse.elite_driving_school_orm.util.AuthUtil;
 import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
+import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class MainStudentController {
+public class MainStudentController implements Initializable {
 
-//    private final StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
+    private final StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
 
     public TableView<StudentTM> tblStudent;
 
     public TableColumn<StudentTM, String> colStudentID;
     public TableColumn<StudentTM, String> colName;
-    public TableColumn<StudentTM, String> colAddress;
-    public TableColumn<StudentTM, String> colNIC;
     public TableColumn<StudentTM, String> colEmail;
     public TableColumn<StudentTM, String> colContact;
-    public TableColumn<StudentTM, String> colRegDate;
-
-    private final String namePattern = "^[A-Za-z ]+$";
-    private final String nicPattern = "^[0-9]{9}[vVxX]||[0-9]{12}$";
-    private final String emailPattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-    private final String phonePattern = "^(\\d+)||((\\d+\\.)(\\d){2})$";
+    public TableColumn<StudentTM, String> colAddress;
+    public TableColumn<StudentTM, String> colNIC;
+    public TableColumn<StudentTM, LocalDate> colRegDate;
 
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnAddNewStudent;
     public AnchorPane ancStudentForm;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colStudentID.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colNIC.setCellValueFactory(new PropertyValueFactory<>("nic"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        colRegDate.setCellValueFactory(new PropertyValueFactory<>("regDate"));
+
+        try {
+            resetPage();
+        } catch (SQLException e) {
+
+            new Alert(Alert.AlertType.ERROR, "Fail to load data..!").show();
+        }
+
+        boolean isAdmin = AuthUtil.isAdmin();
+        if (!isAdmin) {
+            btnDelete.setDisable(true);
+            btnUpdate.setDisable(true);
+        }
+    }
+
+    private void resetPage() throws SQLException {
+        loadTableData();
+
+        btnUpdate.setDisable(false);
+        btnDelete.setDisable(false);
+
+        btnAddNewStudent.setDisable(false);
+    }
+
+    public void loadTableData() throws SQLException {
+        tblStudent.setItems(FXCollections.observableArrayList(
+                studentBO.getAllStudent().stream().map(studentDTO ->
+                        new StudentTM(
+                                studentDTO.getStudentId(),
+                                studentDTO.getName(),
+                                studentDTO.getEmail(),   // email 3rd
+                                studentDTO.getPhone(),   // phone 4th
+                                studentDTO.getAddress(), // address 5th
+                                studentDTO.getNic(),     // nic 6th
+                                studentDTO.getRegDate()  // regDate 7th
+                        )).toList()
+        ));
+        tblStudent.refresh();
+    }
+
+    private StudentTM selectedStudent;
+
     public void btnAddNewStudent(ActionEvent actionEvent) {
         NavigationUtil.navigateTo(ancStudentForm, "/view/student/AddStudent.fxml");
     }
 
     public void btnUpdate(ActionEvent actionEvent) {
-        NavigationUtil.navigateTo(ancStudentForm, "/view/student/UpdateStudent.fxml");
-    }
+//        if (selectedStudent != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/student/UpdateStudent.fxml"));
+                Parent root = loader.load();
+
+                UpdateStudentController controller = loader.getController();
+
+                controller.setStudentData(selectedStudent);
+
+                ancStudentForm.getChildren().clear();
+                ancStudentForm.getChildren().add(root);
+
+//                AnchorPane.setTopAnchor(root, 0.0);
+//                AnchorPane.setLeftAnchor(root, 0.0);
+//                AnchorPane.setRightAnchor(root, 0.0);
+//                AnchorPane.setBottomAnchor(root, 0.0);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+//        else {
+//            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a student to update!");
+//            alert.show();
+//        }
+//    }
 
     public void btnDelete(ActionEvent actionEvent) {
+        Alert alert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Are you sure ?",
+                ButtonType.YES,
+                ButtonType.NO
+        );
+
+        Optional<ButtonType> response = alert.showAndWait();
+
+        if (response.isPresent() && response.get() == ButtonType.YES) {
+            try {
+                boolean isDeleted = studentBO.deleteStudent(selectedStudent.getStudentId());
+
+//                if (isDeleted) {
+                    resetPage();
+                    new Alert(
+                            Alert.AlertType.INFORMATION, "Customer deleted successfully."
+                    ).show();
+//                } else {
+//                    new Alert(Alert.AlertType.ERROR, "Fail to delete customer.").show();
+//
+//                }
+            } catch (InUseException e) {
+
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Student not deleted").show();
+            }
+        }
+    }
+
+    public void onClickTable(javafx.scene.input.MouseEvent mouseEvent) {
+        selectedStudent = tblStudent.getSelectionModel().getSelectedItem();
+
+        if (selectedStudent != null) {
+            btnUpdate.setDisable(false);
+            btnDelete.setDisable(false);
+        }
     }
 }

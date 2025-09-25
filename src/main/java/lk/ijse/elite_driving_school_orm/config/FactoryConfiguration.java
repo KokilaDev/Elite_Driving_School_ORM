@@ -13,14 +13,14 @@ public class FactoryConfiguration {
         Configuration configuration = new Configuration();
         configuration.configure();
 
-//        configuration.addAnnotatedClass(Student.class);
-//        configuration.addAnnotatedClass(Course.class);
-//        configuration.addAnnotatedClass(Instructor.class);
-//        configuration.addAnnotatedClass(Lesson.class);
-//        configuration.addAnnotatedClass(Payment.class);
-//        configuration.addAnnotatedClass(User.class);
-//        configuration.addAnnotatedClass(Student_Course.class);
-//        configuration.addAnnotatedClass(Course_Instructor.class);
+        configuration.addAnnotatedClass(Student.class);
+        configuration.addAnnotatedClass(Course.class);
+        configuration.addAnnotatedClass(Instructor.class);
+        configuration.addAnnotatedClass(Lesson.class);
+        configuration.addAnnotatedClass(Payment.class);
+        configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(Student_Course.class);
+        configuration.addAnnotatedClass(Course_Instructor.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }

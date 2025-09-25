@@ -22,7 +22,7 @@ public class StudentDAOImpl implements StudentDAO {
     public List<Student> getAll() throws SQLException {
         Session session = factoryConfiguration.getSession();
         try {
-            Query<Student> query = session.createQuery("from Student", Student.class);
+            Query<Student> query = session.createQuery("FROM Student", Student.class);
             List<Student> studentList = query.list();
             return studentList;
         } finally {
@@ -31,14 +31,14 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public Student getLastId() throws SQLException {
+    public String getLastId() throws SQLException {
         Session session = factoryConfiguration.getSession();
         try {
-            Query<Student> query = session.createQuery(
+            Query<String> query = session.createQuery(
                     "SELECT stu.id FROM Student stu ORDER BY stu.id DESC",
-                    Student.class
+                    String.class
             ).setMaxResults(1);
-            List<Student> studentList = query.list();
+            List<String> studentList = query.list();
             if (studentList.isEmpty()) {
                 return null;
             }
@@ -104,7 +104,7 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public List<String> getAllIds() throws SQLException {
-        ResultSet resultSet = SQLUtil.execute("SELECT student_id FROM Student");
+        ResultSet resultSet = SQLUtil.execute("SELECT student_id FROM students");
         List<String> ids = new ArrayList<>();
         while (resultSet.next()) {
             ids.add(resultSet.getString(1));
@@ -163,7 +163,9 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public boolean existsStudentByPhoneNumber(String phoneNumber) throws SQLException {
-        ResultSet resultSet = SQLUtil.execute("SELECT * FROM student WHERE phoneNumber = ?", phoneNumber);
+        ResultSet resultSet = SQLUtil.execute(
+                "SELECT 1 FROM students WHERE phone = ?", phoneNumber
+        );
         return resultSet.next();
     }
 }

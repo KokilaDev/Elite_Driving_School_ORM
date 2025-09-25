@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -34,7 +35,7 @@ public class Student {
     private String nic;
 
     @Column(name = "reg_date")
-    private String regDate;
+    private LocalDate regDate;
 
 //    @ManyToMany
 //    @JoinTable(

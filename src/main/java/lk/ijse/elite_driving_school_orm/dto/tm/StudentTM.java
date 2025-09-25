@@ -2,6 +2,8 @@ package lk.ijse.elite_driving_school_orm.dto.tm;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,5 +16,6 @@ public class StudentTM {
     private String phone;
     private String address;
     private String nic;
-    private String regDate;
+    private LocalDate regDate;
+
 }

@@ -11,6 +11,8 @@ public class EntityDTOConverter {
         studentDTO.setEmail(student.getEmail());
         studentDTO.setPhone(student.getPhone());
         studentDTO.setAddress(student.getAddress());
+        studentDTO.setNic(student.getNic());
+        studentDTO.setRegDate(student.getRegDate());
         return studentDTO;
     }
 
@@ -21,6 +23,10 @@ public class EntityDTOConverter {
         student.setEmail(studentDTO.getEmail());
         student.setPhone(studentDTO.getPhone());
         student.setAddress(studentDTO.getAddress());
+        student.setNic(studentDTO.getNic());
+        student.setRegDate(studentDTO.getRegDate());
         return student;
     }
+
+
 }

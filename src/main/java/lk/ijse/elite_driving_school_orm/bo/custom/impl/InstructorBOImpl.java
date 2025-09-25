@@ -1,4 +1,6 @@
 package lk.ijse.elite_driving_school_orm.bo.custom.impl;
 
-public class InstructorBOImpl {
+import lk.ijse.elite_driving_school_orm.bo.custom.InstructorBO;
+
+public class InstructorBOImpl implements InstructorBO {
 }

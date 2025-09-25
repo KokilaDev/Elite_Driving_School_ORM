@@ -1,4 +1,6 @@
 package lk.ijse.elite_driving_school_orm.bo.custom;
 
-public interface LessonBO {
+import lk.ijse.elite_driving_school_orm.bo.SuperBO;
+
+public interface LessonBO extends SuperBO {
 }

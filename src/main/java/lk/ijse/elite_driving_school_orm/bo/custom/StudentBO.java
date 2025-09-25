@@ -13,7 +13,7 @@ public interface StudentBO extends SuperBO {
 
     void saveStudent(StudentDTO studentDTO) throws DuplicateException, Exception;
 
-    void updateStudent(StudentDTO studentDTO) throws SQLException;
+    boolean updateStudent(StudentDTO studentDTO) throws SQLException;
 
     boolean deleteStudent(String id) throws InUseException, Exception;
 

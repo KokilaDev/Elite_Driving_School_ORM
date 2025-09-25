@@ -10,6 +10,7 @@ module lk.ijse.elite_driving_school_orm {
     opens lk.ijse.elite_driving_school_orm.controller to javafx.fxml;
     opens lk.ijse.elite_driving_school_orm.util to javafx.fxml;
     opens lk.ijse.elite_driving_school_orm.entity to org.hibernate.orm.core;
+    opens lk.ijse.elite_driving_school_orm.dto.tm to javafx.base;
 
     exports lk.ijse.elite_driving_school_orm;
     exports lk.ijse.elite_driving_school_orm.util;

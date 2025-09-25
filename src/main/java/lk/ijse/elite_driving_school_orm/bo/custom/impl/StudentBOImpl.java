@@ -1,5 +1,6 @@
 package lk.ijse.elite_driving_school_orm.bo.custom.impl;
 
+import javafx.scene.control.Alert;
 import lk.ijse.elite_driving_school_orm.bo.custom.StudentBO;
 import lk.ijse.elite_driving_school_orm.bo.exception.DuplicateException;
 import lk.ijse.elite_driving_school_orm.bo.exception.InUseException;
@@ -54,7 +55,7 @@ public class StudentBOImpl implements StudentBO {
     }
 
     @Override
-    public void updateStudent(StudentDTO studentDTO) throws SQLException {
+    public boolean updateStudent(StudentDTO studentDTO) throws SQLException {
         Optional<Student> optionalStudent = studentDAO.findById(studentDTO.getStudentId());
         if (optionalStudent.isEmpty()) {
             throw new NotFoundException("Student not found");
@@ -71,6 +72,7 @@ public class StudentBOImpl implements StudentBO {
 
         Student student = converter.getStudent(studentDTO);
         studentDAO.update(student);
+        return false;
     }
 
     @Override
@@ -80,11 +82,30 @@ public class StudentBOImpl implements StudentBO {
             throw new NotFoundException("Student not found");
         }
 
+        try{
+
+            boolean delete = studentDAO.delete(id);
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Student delete not found").show();
+        }
         return false;
     }
 
     @Override
     public String getNextId() throws SQLException {
-        return "";
+       String lastId =  studentDAO.getLastId();
+       char tablechar = 'S';
+       if (lastId != null){
+            String lastNumberString = lastId.substring(1);
+            int lastNumber = Integer.parseInt(lastNumberString);
+            int nextId = lastNumber + 1;
+            return String.format(tablechar +"%03d",nextId);
+       }
+
+       return tablechar + "001";
+
     }
 }

@@ -1,4 +1,6 @@
 package lk.ijse.elite_driving_school_orm.bo.custom.impl;
 
-public class PaymentBOImpl {
+import lk.ijse.elite_driving_school_orm.bo.custom.PaymentBO;
+
+public class PaymentBOImpl implements PaymentBO {
 }
