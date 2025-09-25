@@ -68,13 +68,27 @@ public class MainStudentController implements Initializable {
             btnDelete.setDisable(true);
             btnUpdate.setDisable(true);
         }
+
+        // disable update/delete until a row is selected
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
+
+        tblStudent.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                btnUpdate.setDisable(false);
+                btnDelete.setDisable(false);
+            } else {
+                btnUpdate.setDisable(true);
+                btnDelete.setDisable(true);
+            }
+        });
     }
 
     private void resetPage() throws SQLException {
         loadTableData();
 
-        btnUpdate.setDisable(false);
-        btnDelete.setDisable(false);
+//        btnUpdate.setDisable(false);
+//        btnDelete.setDisable(false);
 
         btnAddNewStudent.setDisable(false);
     }
@@ -85,11 +99,11 @@ public class MainStudentController implements Initializable {
                         new StudentTM(
                                 studentDTO.getStudentId(),
                                 studentDTO.getName(),
-                                studentDTO.getEmail(),   // email 3rd
-                                studentDTO.getPhone(),   // phone 4th
-                                studentDTO.getAddress(), // address 5th
-                                studentDTO.getNic(),     // nic 6th
-                                studentDTO.getRegDate()  // regDate 7th
+                                studentDTO.getAddress(),
+                                studentDTO.getNic(),
+                                studentDTO.getEmail(),
+                                studentDTO.getPhone(),
+                                studentDTO.getRegDate()
                         )).toList()
         ));
         tblStudent.refresh();
@@ -142,12 +156,12 @@ public class MainStudentController implements Initializable {
         if (response.isPresent() && response.get() == ButtonType.YES) {
             try {
                 boolean isDeleted = studentBO.deleteStudent(selectedStudent.getStudentId());
-
+                // You may check isDeleted if your BO returns boolean to indicate success
 //                if (isDeleted) {
-                    resetPage();
-                    new Alert(
-                            Alert.AlertType.INFORMATION, "Customer deleted successfully."
-                    ).show();
+                resetPage();
+                new Alert(
+                        Alert.AlertType.INFORMATION, "Customer deleted successfully."
+                ).show();
 //                } else {
 //                    new Alert(Alert.AlertType.ERROR, "Fail to delete customer.").show();
 //

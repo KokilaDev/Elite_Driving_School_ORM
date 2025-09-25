@@ -22,17 +22,17 @@ public class Student {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "phone", length = 15)
-    private String phone;
-
     @Column(name = "address")
     private String address;
 
     @Column(name = "nic")
     private String nic;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "phone", length = 15)
+    private String phone;
 
     @Column(name = "reg_date")
     private LocalDate regDate;

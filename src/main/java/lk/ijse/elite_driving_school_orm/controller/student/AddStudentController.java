@@ -48,10 +48,12 @@ public class AddStudentController implements Initializable {
     private final String namePattern = "^[A-Za-z ]+$";
     private final String nicPattern = "^[0-9]{9}[vVxX]||[0-9]{12}$";
     private final String emailPattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+    // Allow either digits or digits with two decimal places (if you actually need decimals). Change as required.
     private final String phonePattern = "^(\\d+)||((\\d+\\.)(\\d){2})$";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // initial state: no selections -> disable add/remove/save/cancel
         btnAdd.setDisable(false);
         btnRemove.setDisable(false);
         btnSave.setDisable(false);
@@ -60,6 +62,10 @@ public class AddStudentController implements Initializable {
         courseListView.setDisable(false);
         selectedCoursesListView.setDisable(false);
 
+//        courseListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+//        selectedCoursesListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        // sample items (replace with DB load as needed)
         courseListView.getItems().addAll("Course A", "Course B", "Course C");
 //        try {
 //            List<CourseDTO> courses = courseBO.getAllCourses(); // getAllCourses() should return a list of CourseDTO
@@ -159,6 +165,7 @@ public class AddStudentController implements Initializable {
             txtContact.setStyle(txtContact.getStyle() + ";-fx-border-color: #EA2027;");
         }
 
+        // Build DTO (constructor ordering: id, name, address, nic, email, phone, regDate)
         StudentDTO studentDTO = new StudentDTO(
                 studentId,
                 name,
@@ -171,7 +178,6 @@ public class AddStudentController implements Initializable {
 
         if (isValidName && isValidNic && isValidEmail && isValidPhone) {
             try {
-
                 studentBO.saveStudent(studentDTO);
                 resetPage();
                 new Alert(Alert.AlertType.INFORMATION, "Student added successfully").show();
@@ -200,6 +206,8 @@ public class AddStudentController implements Initializable {
         txtEmail.clear();
         txtContact.clear();
         datePicker.setValue(null);
+
+        // Put selected courses back to courseListView
         courseListView.getItems().addAll(selectedCoursesListView.getItems());
         selectedCoursesListView.getItems().clear();
 
@@ -207,6 +215,8 @@ public class AddStudentController implements Initializable {
         btnRemove.setDisable(true);
         btnSave.setDisable(true);
         btnCancel.setDisable(true);
+
+        loadNextId();
     }
 
     public void txtNameChange(KeyEvent keyEvent) {
@@ -215,6 +225,8 @@ public class AddStudentController implements Initializable {
         boolean isValidName = name.matches(namePattern);
 
         txtName.setStyle("-fx-border-color: " + (isValidName ? "#3867d6" : "#EA2027"));
+
+        btnSave.setDisable(!isValidName); // optional immediate feedback
     }
 
     private void loadNextId() throws SQLException {

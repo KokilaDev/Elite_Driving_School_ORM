@@ -54,13 +54,17 @@ public class UpdateStudentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnAdd.setDisable(false);
-        btnRemove.setDisable(false);
-        btnUpdate.setDisable(false);
-        btnCancel.setDisable(false);
+        btnAdd.setDisable(true);
+        btnRemove.setDisable(true);
+        btnUpdate.setDisable(true);
+        btnCancel.setDisable(true);
         btnBack.setDisable(false);
+
         courseListView.setDisable(false);
         selectedCoursesListView.setDisable(false);
+
+//        courseListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+//        selectedCoursesListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 //        courseListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
 //            btnAdd.setDisable(newVal == null);
@@ -95,6 +99,11 @@ public class UpdateStudentController implements Initializable {
 //            datePicker.setValue(null);
 //        }
 
+        // enable update/cancel now that data is loaded
+        btnUpdate.setDisable(false);
+        btnCancel.setDisable(false);
+
+        // TODO: Load courses from DB if needed and set courseListView and selectedCoursesListView
 //        studentCourses = CourseModel.getCoursesForStudent(student.getStudentId());
 //        selectedCoursesListView.getItems().setAll(studentCourses);
 //
@@ -162,6 +171,7 @@ public class UpdateStudentController implements Initializable {
             txtContact.setStyle(txtContact.getStyle() + ";-fx-border-color: #EA2027;");
         }
 
+        // Match constructor order: id, name, address, nic, email, phone, regDate
         StudentDTO studentDTO = new StudentDTO(
                 studentId,
                 name,
