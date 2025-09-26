@@ -38,7 +38,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="tblInstructor">
+            <TableView fx:id="tblInstructor" onMouseClicked="#onClickTable">
               <columns>
                 <TableColumn fx:id="colInstructorID" prefWidth="75.0" text="Instructor ID" />
                 <TableColumn fx:id="colName" prefWidth="75.0" text="Instructor Name" />

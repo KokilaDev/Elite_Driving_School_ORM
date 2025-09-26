@@ -71,8 +71,8 @@ public class StudentBOImpl implements StudentBO {
         }
 
         Student student = converter.getStudent(studentDTO);
-        studentDAO.update(student);
-        return false;
+        boolean isUpdate = studentDAO.update(student);
+        return isUpdate;
     }
 
     @Override

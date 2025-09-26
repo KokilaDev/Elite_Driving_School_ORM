@@ -74,7 +74,7 @@
                             <Font name="System Bold" size="17.0" />
                         </font>
                     </Label>
-                    <TextField fx:id="txtName" prefWidth="400.0" stylesheets="@../../css/style.css">
+                    <TextField fx:id="txtName" onKeyReleased="#txtNameChange" prefWidth="400.0" stylesheets="@../../css/style.css">
                         <HBox.margin>
                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                         </HBox.margin>
@@ -91,7 +91,7 @@
                             <Font name="System Bold" size="17.0" />
                         </font>
                     </Label>
-                    <TextField fx:id="txtEmail" prefWidth="300.0" stylesheets="@../../css/style.css">
+                    <TextField fx:id="txtEmail" onKeyReleased="#txtEmailChange" prefWidth="300.0" stylesheets="@../../css/style.css">
                         <HBox.margin>
                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                         </HBox.margin>
@@ -117,7 +117,7 @@
                                     <Font name="System Bold" size="17.0" />
                                 </font>
                             </Label>
-                            <TextField fx:id="txtContact" stylesheets="@../../css/style.css">
+                            <TextField fx:id="txtContact" onKeyReleased="#txtContactChange" stylesheets="@../../css/style.css">
                                 <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                 </HBox.margin>

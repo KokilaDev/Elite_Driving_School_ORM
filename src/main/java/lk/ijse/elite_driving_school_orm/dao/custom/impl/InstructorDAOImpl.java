@@ -5,6 +5,7 @@ import lk.ijse.elite_driving_school_orm.dao.custom.InstructorDAO;
 import lk.ijse.elite_driving_school_orm.entity.Instructor;
 import lk.ijse.elite_driving_school_orm.entity.Student;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.sql.SQLException;
@@ -29,17 +30,54 @@ public class InstructorDAOImpl implements InstructorDAO {
 
     @Override
     public String getLastId() throws SQLException {
-        return null;
+        Session session = factoryConfiguration.getSession();
+        try {
+            Query<String> query = session.createQuery(
+                    "SELECT ins.id FROM Instructor ins ORDER BY ins.id DESC",
+                    String.class
+            ).setMaxResults(1);
+            List<String> instructorList = query.list();
+            if (instructorList.isEmpty()) {
+                return null;
+            }
+            return instructorList.get(0);
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public boolean save(Instructor instructor) throws SQLException {
-        return false;
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.persist(instructor);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public boolean update(Instructor instructor) throws SQLException {
-        return false;
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.merge(instructor);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
@@ -54,6 +92,12 @@ public class InstructorDAOImpl implements InstructorDAO {
 
     @Override
     public Optional<Instructor> findById(String id) throws SQLException {
-        return Optional.empty();
+        Session session = factoryConfiguration.getSession();
+        try {
+            Instructor instructor = session.get(Instructor.class, id);
+            return Optional.ofNullable(instructor);
+        } finally {
+            session.close();
+        }
     }
 }

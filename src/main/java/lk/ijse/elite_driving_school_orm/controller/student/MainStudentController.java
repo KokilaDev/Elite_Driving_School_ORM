@@ -26,6 +26,7 @@ import java.util.ResourceBundle;
 public class MainStudentController implements Initializable {
 
     private final StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
+    private StudentTM selectedStudent;
 
     public TableView<StudentTM> tblStudent;
 
@@ -104,8 +105,6 @@ public class MainStudentController implements Initializable {
         ));
         tblStudent.refresh();
     }
-
-    private StudentTM selectedStudent;
 
     public void btnAddNewStudent(ActionEvent actionEvent) {
         NavigationUtil.navigateTo(ancStudentForm, "/view/student/AddStudent.fxml");

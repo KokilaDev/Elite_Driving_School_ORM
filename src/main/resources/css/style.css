@@ -92,6 +92,33 @@
             #3c40c6 100%
     );
     -fx-text-fill: white;
+}
 
+.combo-box {
+    -fx-background-color: #ffffff;       /* ComboBox background */
+    -fx-border-color: #181a2f;           /* Border color */
+    -fx-border-width: 0 0 1px 0;         /* Only bottom border */
+    -fx-text-fill: #000000;              /* Text color */
+}
 
+.combo-box:focused {
+    -fx-border-color: #3498db;           /* Blue border on focus */
+    -fx-border-width: 2px 0 2px 0;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: white;         /* Dropdown cell background */
+    -fx-text-fill: #181a2f;              /* Text color in list */
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: rgba(52, 152, 219, 0.2); /* Hover highlight */
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;    /* Remove default arrow button background */
+}
+
+.combo-box .arrow {
+    -fx-background-color: #000000;        /* Arrow color */
 }

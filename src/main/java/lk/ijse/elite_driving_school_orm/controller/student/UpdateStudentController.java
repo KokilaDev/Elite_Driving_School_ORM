@@ -3,6 +3,7 @@ package lk.ijse.elite_driving_school_orm.controller.student;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.elite_driving_school_orm.bo.BOFactory;
 import lk.ijse.elite_driving_school_orm.bo.BOTypes;
@@ -11,6 +12,7 @@ import lk.ijse.elite_driving_school_orm.bo.custom.StudentBO;
 import lk.ijse.elite_driving_school_orm.bo.exception.DuplicateException;
 import lk.ijse.elite_driving_school_orm.dto.CourseDTO;
 import lk.ijse.elite_driving_school_orm.dto.StudentDTO;
+import lk.ijse.elite_driving_school_orm.dto.tm.InstructorTM;
 import lk.ijse.elite_driving_school_orm.dto.tm.StudentTM;
 import lk.ijse.elite_driving_school_orm.model.CourseModel;
 import lk.ijse.elite_driving_school_orm.model.StudentModel;
@@ -265,4 +267,43 @@ public class UpdateStudentController implements Initializable {
         btnCancel.setDisable(true);
     }
 
+    public void txtNameChange(KeyEvent keyEvent) {
+        String name = txtName.getText();
+
+        boolean isValidName = name.matches(namePattern);
+
+        txtName.setStyle("-fx-border-color: " + (isValidName ? "#3867d6" : "#EA2027"));
+
+        btnUpdate.setDisable(!isValidName); // optional immediate feedback
+    }
+
+    public void txtNICChange(KeyEvent keyEvent) {
+        String nic = txtNIC.getText();
+
+        boolean isValidNIC = nic.matches(nicPattern);
+
+        txtNIC.setStyle("-fx-border-color: " + (isValidNIC ? "#3867d6" : "#EA2027"));
+
+        btnUpdate.setDisable(!isValidNIC); // optional immediate feedback
+    }
+
+    public void txtEmailChange(KeyEvent keyEvent) {
+        String email = txtEmail.getText();
+
+        boolean isValidEmail = email.matches(emailPattern);
+
+        txtEmail.setStyle("-fx-border-color: " + (isValidEmail ? "#3867d6" : "#EA2027"));
+
+        btnUpdate.setDisable(!isValidEmail); // optional immediate feedback
+    }
+
+    public void txtContactChange(KeyEvent keyEvent) {
+        String contact = txtContact.getText();
+
+        boolean isValidContact = contact.matches(phonePattern);
+
+        txtContact.setStyle("-fx-border-color: " + (isValidContact ? "#3867d6" : "#EA2027"));
+
+        btnUpdate.setDisable(!isValidContact); // optional immediate feedback
+    }
 }

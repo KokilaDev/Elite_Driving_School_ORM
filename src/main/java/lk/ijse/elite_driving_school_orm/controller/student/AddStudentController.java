@@ -229,6 +229,36 @@ public class AddStudentController implements Initializable {
         btnSave.setDisable(!isValidName); // optional immediate feedback
     }
 
+    public void txtNICChange(KeyEvent keyEvent) {
+        String nic = txtNIC.getText();
+
+        boolean isValidNIC = nic.matches(nicPattern);
+
+        txtNIC.setStyle("-fx-border-color: " + (isValidNIC ? "#3867d6" : "#EA2027"));
+
+        btnSave.setDisable(!isValidNIC); // optional immediate feedback
+    }
+
+    public void txtEmailChange(KeyEvent keyEvent) {
+        String email = txtEmail.getText();
+
+        boolean isValidEmail = email.matches(emailPattern);
+
+        txtEmail.setStyle("-fx-border-color: " + (isValidEmail ? "#3867d6" : "#EA2027"));
+
+        btnSave.setDisable(!isValidEmail); // optional immediate feedback
+    }
+
+    public void txtContactChange(KeyEvent keyEvent) {
+        String contact = txtContact.getText();
+
+        boolean isValidContact = contact.matches(phonePattern);
+
+        txtContact.setStyle("-fx-border-color: " + (isValidContact ? "#3867d6" : "#EA2027"));
+
+        btnSave.setDisable(!isValidContact); // optional immediate feedback
+    }
+
     private void loadNextId() throws SQLException {
         String nextId = studentBO.getNextId();
         lblStudentID.setText(nextId);
