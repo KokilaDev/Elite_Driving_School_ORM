@@ -10,6 +10,7 @@ import lk.ijse.elite_driving_school_orm.dao.DAOFactory;
 import lk.ijse.elite_driving_school_orm.dao.DAOTypes;
 import lk.ijse.elite_driving_school_orm.dao.custom.CourseDAO;
 import lk.ijse.elite_driving_school_orm.dto.CourseDTO;
+import lk.ijse.elite_driving_school_orm.dto.LessonDTO;
 import lk.ijse.elite_driving_school_orm.entity.Course;
 
 import java.sql.SQLException;
@@ -83,5 +84,20 @@ public class CourseBOImpl implements CourseBO {
             return String.format(tablechar + "%03d", nextId);
         }
         return tablechar + "001";
+    }
+
+    @Override
+    public List<LessonDTO> getAllLessons() {
+        return List.of();
+    }
+
+    @Override
+    public List<LessonDTO> getLessonsByCourseId(String courseId) {
+        return List.of();
+    }
+
+    @Override
+    public Object getLessonsById() {
+        return null;
     }
 }

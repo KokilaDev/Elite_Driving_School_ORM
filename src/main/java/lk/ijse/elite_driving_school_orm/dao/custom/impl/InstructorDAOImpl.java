@@ -1,17 +1,30 @@
 package lk.ijse.elite_driving_school_orm.dao.custom.impl;
 
+import lk.ijse.elite_driving_school_orm.config.FactoryConfiguration;
 import lk.ijse.elite_driving_school_orm.dao.custom.InstructorDAO;
 import lk.ijse.elite_driving_school_orm.entity.Instructor;
 import lk.ijse.elite_driving_school_orm.entity.Student;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 public class InstructorDAOImpl implements InstructorDAO {
+    private final FactoryConfiguration factoryConfiguration = FactoryConfiguration.getInstance();
     @Override
     public List<Instructor> getAll() throws SQLException {
-        return List.of();
+
+        Session session = factoryConfiguration.getSession();
+        try {
+            Query<Instructor> query = session.createQuery("FROM Instructor", Instructor.class);
+            List<Instructor> instructorList = query.list();
+            return instructorList;
+        } finally {
+            session.close();
+        }
+
     }
 
     @Override

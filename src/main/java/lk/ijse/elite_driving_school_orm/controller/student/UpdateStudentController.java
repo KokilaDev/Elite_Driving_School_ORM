@@ -189,7 +189,8 @@ public class UpdateStudentController implements Initializable {
                 new Alert(Alert.AlertType.INFORMATION, "Student added successfully").show();
             } catch (DuplicateException e) {
                 System.out.println(e.getMessage());
-                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+//                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+                new Alert(Alert.AlertType.ERROR,"fill save").show();
             }catch (Exception e) {
                 e.printStackTrace();
                 new Alert(Alert.AlertType.ERROR, "Fail to save student!").show();

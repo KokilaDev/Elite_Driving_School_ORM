@@ -16,6 +16,7 @@ import lk.ijse.elite_driving_school_orm.dto.tm.CourseTM;
 import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -103,46 +104,59 @@ public class UpdateCourseController implements Initializable {
     }
 
     public void btnUpdate(ActionEvent actionEvent) {
+        String id = lblCourseID.getText();
         String name = txtName.getText();
-        String durationText = txtDuration.getText();
-        String feeText = txtFee.getText();
+        int durationText = Integer.parseInt(txtDuration.getText());
+        Double feeText = Double.valueOf(txtFee.getText());
 
-        if (name.isEmpty() || durationText.isEmpty() || feeText.isEmpty() || selectedLessons.isEmpty()) {
-            new Alert(Alert.AlertType.WARNING, "Please fill all fields and select at least one lesson!").show();
-            return;
-        }
+//        if (name.isEmpty() || durationText.isEmpty() || feeText.isEmpty() || selectedLessons.isEmpty()) {
+//            new Alert(Alert.AlertType.WARNING, "Please fill all fields and select at least one lesson!").show();
+//            return;
+//        }
 
-        int duration;
-        double fee;
-        try {
-            duration = Integer.parseInt(durationText);
-            fee = Double.parseDouble(feeText);
-        } catch (NumberFormatException e) {
-            new Alert(Alert.AlertType.ERROR, "Duration and Fee must be numbers").show();
-            return;
-        }
+//        int duration;
+//        double fee;
+//        try {
+//            duration = Integer.parseInt(durationText);
+//            fee = Double.parseDouble(feeText);
+//        } catch (NumberFormatException e) {
+//            new Alert(Alert.AlertType.ERROR, "Duration and Fee must be numbers").show();
+//            return;
+//        }
 
         // Convert selected lessons to LessonDTO
-        List<LessonDTO> lessonDTOs = new ArrayList<>();
-        for (String lessonName : selectedLessons) {
-            try {
-                LessonDTO lesson = (LessonDTO) courseBO.getLessonsById(); // implement in BO
-                lessonDTOs.add(lesson);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+//        List<LessonDTO> lessonDTOs = new ArrayList<>();
+//        for (String lessonName : selectedLessons) {
+//            try {
+//                LessonDTO lesson = (LessonDTO) courseBO.getLessonsById(); // implement in BO
+//                lessonDTOs.add(lesson);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
 
-        CourseDTO courseDTO = new CourseDTO(courseTM.getCourseId(), name, duration, fee);
+//        CourseDTO courseDTO = new CourseDTO(courseTM.getCourseId());
+
+        CourseDTO courseDTO = new CourseDTO(
+                id,
+                name,
+                durationText,
+                feeText
+        );
+
+
 
         try {
             boolean updated = courseBO.updateCourse(courseDTO);
-            if (updated) {
-                new Alert(Alert.AlertType.INFORMATION, "Course updated successfully!").show();
-                btnBack(actionEvent); // navigate back
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Failed to update course!").show();
-            }
+//            if (updated) {
+//                new Alert(Alert.AlertType.INFORMATION, "Course updated successfully!").show();
+//                btnBack(actionEvent); // navigate back
+//            } else {
+//                new Alert(Alert.AlertType.ERROR, "Failed to update course!").show();
+//            }
+            resetPage();
+            new Alert(Alert.AlertType.CONFIRMATION, "Course updated successfully!").show();
+
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Error updating course: " + e.getMessage()).show();
@@ -151,5 +165,21 @@ public class UpdateCourseController implements Initializable {
 
     public void btnCancel(ActionEvent actionEvent) {
         setCourseData(courseTM);
+    }
+
+    private void resetPage() throws SQLException {
+        txtName.clear();
+        txtFee.clear();
+        txtDuration.clear();
+
+//        courseListView.getItems().addAll(selectedCoursesListView.getItems());
+//        selectedCoursesListView.getItems().clear();
+//
+//        selectedStudent = null;
+
+        btnAdd.setDisable(true);
+        btnRemove.setDisable(true);
+        btnUpdate.setDisable(true);
+        btnCancel.setDisable(true);
     }
 }
