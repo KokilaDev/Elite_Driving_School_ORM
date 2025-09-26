@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.elite_driving_school_orm.bo.BOFactory;
 import lk.ijse.elite_driving_school_orm.bo.BOTypes;
 import lk.ijse.elite_driving_school_orm.bo.custom.InstructorBO;
+import lk.ijse.elite_driving_school_orm.bo.exception.InUseException;
 import lk.ijse.elite_driving_school_orm.controller.student.UpdateStudentController;
 import lk.ijse.elite_driving_school_orm.dto.tm.InstructorTM;
 import lk.ijse.elite_driving_school_orm.dto.tm.StudentTM;
@@ -21,6 +22,7 @@ import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainInstructorController implements Initializable {
@@ -111,6 +113,37 @@ public class MainInstructorController implements Initializable {
     }
 
     public void btnDelete(ActionEvent actionEvent) {
+        Alert alert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Are you sure ?",
+                ButtonType.YES,
+                ButtonType.NO
+        );
+
+        Optional<ButtonType> response = alert.showAndWait();
+
+        if (response.isPresent() && response.get() == ButtonType.YES) {
+            try {
+                boolean isDeleted = instructorBO.deleteInstructor(selectedInstructor.getInstructorId());
+                // You may check isDeleted if your BO returns boolean to indicate success
+//                if (isDeleted) {
+                resetPage();
+                new Alert(
+                        Alert.AlertType.INFORMATION, "Instructor deleted successfully."
+                ).show();
+//                } else {
+//                    new Alert(Alert.AlertType.ERROR, "Fail to delete customer.").show();
+//
+//                }
+            } catch (InUseException e) {
+
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Instructor not deleted").show();
+            }
+        }
     }
 
     public void loadTableData() throws SQLException {

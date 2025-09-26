@@ -1,7 +1,9 @@
 package lk.ijse.elite_driving_school_orm.bo.custom.impl;
 
+import javafx.scene.control.Alert;
 import lk.ijse.elite_driving_school_orm.bo.custom.InstructorBO;
 import lk.ijse.elite_driving_school_orm.bo.exception.DuplicateException;
+import lk.ijse.elite_driving_school_orm.bo.exception.InUseException;
 import lk.ijse.elite_driving_school_orm.bo.exception.NotFoundException;
 import lk.ijse.elite_driving_school_orm.bo.util.EntityDTOConverter;
 import lk.ijse.elite_driving_school_orm.dao.DAOFactory;
@@ -72,5 +74,24 @@ public class InstructorBOImpl implements InstructorBO {
 
         return  isUpdate;
 
+    }
+
+    @Override
+    public boolean deleteInstructor(String id) throws InUseException, Exception {
+        Optional<Instructor> optionalInstructor = instructorDAO.findById(id);
+        if (optionalInstructor.isEmpty()) {
+            throw new NotFoundException("Instructor not found");
+        }
+
+        try{
+
+            boolean delete = instructorDAO.delete(id);
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Instructor delete not found").show();
+        }
+        return false;
     }
 }
