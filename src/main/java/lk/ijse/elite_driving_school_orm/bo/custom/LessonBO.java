@@ -2,6 +2,7 @@ package lk.ijse.elite_driving_school_orm.bo.custom;
 
 import lk.ijse.elite_driving_school_orm.bo.SuperBO;
 import lk.ijse.elite_driving_school_orm.bo.exception.DuplicateException;
+import lk.ijse.elite_driving_school_orm.bo.exception.InUseException;
 import lk.ijse.elite_driving_school_orm.dto.LessonDTO;
 import lk.ijse.elite_driving_school_orm.dto.StudentDTO;
 
@@ -16,4 +17,7 @@ public interface LessonBO extends SuperBO {
     String getNextId() throws SQLException;
 
     boolean updateLesson(LessonDTO lessonDTO) throws SQLException;
+
+    boolean deleteLesson(String id) throws InUseException, Exception;
+
 }

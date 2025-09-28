@@ -1,6 +1,7 @@
 package lk.ijse.elite_driving_school_orm.dao.custom.impl;
 
 import lk.ijse.elite_driving_school_orm.config.FactoryConfiguration;
+import lk.ijse.elite_driving_school_orm.dao.SQLUtil;
 import lk.ijse.elite_driving_school_orm.dao.custom.LessonDAO;
 import lk.ijse.elite_driving_school_orm.entity.Instructor;
 import lk.ijse.elite_driving_school_orm.entity.Lesson;
@@ -9,7 +10,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,12 +84,33 @@ public class LessonDAOImpl implements LessonDAO {
 
     @Override
     public boolean delete(String id) throws SQLException {
-        return false;
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            Lesson lesson = session.get(Lesson.class, id);
+            if (lesson != null) {
+                session.remove(lesson);
+                transaction.commit();
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public List<String> getAllIds() throws SQLException {
-        return List.of();
+        ResultSet resultSet = SQLUtil.execute("SELECT lesson_id FROM lessons");
+        List<String> ids = new ArrayList<>();
+        while (resultSet.next()) {
+            ids.add(resultSet.getString(1));
+        }
+        return ids;
     }
 
     @Override

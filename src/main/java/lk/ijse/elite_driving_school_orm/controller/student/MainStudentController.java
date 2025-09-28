@@ -158,7 +158,7 @@ public class MainStudentController implements Initializable {
                         Alert.AlertType.INFORMATION, "Student deleted successfully."
                 ).show();
 //                } else {
-//                    new Alert(Alert.AlertType.ERROR, "Fail to delete customer.").show();
+//                    new Alert(Alert.AlertType.ERROR, "Fail to delete student.").show();
 //
 //                }
             } catch (InUseException e) {

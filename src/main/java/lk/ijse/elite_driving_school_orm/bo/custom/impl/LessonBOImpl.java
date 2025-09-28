@@ -1,7 +1,9 @@
 package lk.ijse.elite_driving_school_orm.bo.custom.impl;
 
+import javafx.scene.control.Alert;
 import lk.ijse.elite_driving_school_orm.bo.custom.LessonBO;
 import lk.ijse.elite_driving_school_orm.bo.exception.DuplicateException;
+import lk.ijse.elite_driving_school_orm.bo.exception.InUseException;
 import lk.ijse.elite_driving_school_orm.bo.exception.NotFoundException;
 import lk.ijse.elite_driving_school_orm.bo.util.EntityDTOConverter;
 import lk.ijse.elite_driving_school_orm.dao.DAOFactory;
@@ -12,9 +14,7 @@ import lk.ijse.elite_driving_school_orm.dao.custom.LessonDAO;
 import lk.ijse.elite_driving_school_orm.dao.custom.impl.CourseDAOImpl;
 import lk.ijse.elite_driving_school_orm.dao.custom.impl.InstructorDAOImpl;
 import lk.ijse.elite_driving_school_orm.dto.LessonDTO;
-import lk.ijse.elite_driving_school_orm.dto.StudentDTO;
 import lk.ijse.elite_driving_school_orm.entity.Lesson;
-import lk.ijse.elite_driving_school_orm.entity.Student;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -75,5 +75,21 @@ public class LessonBOImpl implements LessonBO {
         Lesson lesson = converter.getLesson(lessonDTO);
         boolean isUpdate = lessonDAO.update(lesson);
         return isUpdate;
+    }
+
+    @Override
+    public boolean deleteLesson(String id) throws InUseException, Exception {
+        Optional<Lesson> optionalLesson = lessonDAO.findById(id);
+        if (optionalLesson.isEmpty()) {
+            throw new NotFoundException("Lesson not found");
+        }
+
+        try{
+            boolean delete = lessonDAO.delete(id);
+        }catch (Exception e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Lesson delete not found").show();
+        }
+        return false;
     }
 }

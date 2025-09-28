@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.elite_driving_school_orm.bo.BOFactory;
 import lk.ijse.elite_driving_school_orm.bo.BOTypes;
 import lk.ijse.elite_driving_school_orm.bo.custom.LessonBO;
+import lk.ijse.elite_driving_school_orm.bo.exception.InUseException;
 import lk.ijse.elite_driving_school_orm.dto.tm.LessonTM;
 import lk.ijse.elite_driving_school_orm.util.AuthUtil;
 import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
@@ -19,6 +20,7 @@ import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainLessonController implements Initializable {
@@ -122,7 +124,37 @@ public class MainLessonController implements Initializable {
     }
 
     public void btnDelete(ActionEvent actionEvent) {
+        Alert alert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Are you sure ?",
+                ButtonType.YES,
+                ButtonType.NO
+        );
 
+        Optional<ButtonType> response = alert.showAndWait();
+
+        if (response.isPresent() && response.get() == ButtonType.YES) {
+            try {
+                boolean isDeleted = lessonBO.deleteLesson(selectedLesson.getLessonId());
+                // You may check isDeleted if your BO returns boolean to indicate success
+//                if (isDeleted) {
+                resetPage();
+                new Alert(
+                        Alert.AlertType.INFORMATION, "Lesson deleted successfully."
+                ).show();
+//                } else {
+//                    new Alert(Alert.AlertType.ERROR, "Fail to delete lesson.").show();
+//
+//                }
+            } catch (InUseException e) {
+
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Lesson not deleted").show();
+            }
+        }
     }
 
     public void onClickTable(javafx.scene.input.MouseEvent mouseEvent) {
