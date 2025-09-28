@@ -2,6 +2,7 @@ package lk.ijse.elite_driving_school_orm.bo.util;
 
 import lk.ijse.elite_driving_school_orm.dao.custom.CourseDAO;
 import lk.ijse.elite_driving_school_orm.dao.custom.InstructorDAO;
+import lk.ijse.elite_driving_school_orm.dao.custom.StudentDAO;
 import lk.ijse.elite_driving_school_orm.dto.*;
 import lk.ijse.elite_driving_school_orm.entity.*;
 
@@ -12,11 +13,13 @@ public class EntityDTOConverter {
 
     private CourseDAO courseDAO;
     private InstructorDAO instructorDAO;
+    private StudentDAO studentDAO;
 
     public EntityDTOConverter() {}
-    public EntityDTOConverter(CourseDAO courseDAO, InstructorDAO instructorDAO) {
+    public EntityDTOConverter(CourseDAO courseDAO, InstructorDAO instructorDAO, StudentDAO studentDAO) {
         this.courseDAO = courseDAO;
         this.instructorDAO = instructorDAO;
+        this.studentDAO = studentDAO;
     }
 
     // ------------------ Student ------------------
@@ -121,15 +124,20 @@ public class EntityDTOConverter {
         paymentDTO.setAmount(payment.getAmount());
         paymentDTO.setDate(payment.getDate());
         paymentDTO.setStatus(payment.getStatus());
+        paymentDTO.setStudentId(payment.getStudent().getStudentId());
         return paymentDTO;
     }
 
-    public Payment getPayment(PaymentDTO paymentDTO) {
+    public Payment getPayment(PaymentDTO paymentDTO) throws SQLException {
         Payment payment = new Payment();
         payment.setPaymentId(paymentDTO.getPaymentId());
         payment.setAmount(paymentDTO.getAmount());
         payment.setDate(paymentDTO.getDate());
         payment.setStatus(paymentDTO.getStatus());
+        if (paymentDTO.getStudentId() != null) {
+            Optional<Student> student = studentDAO.findById(paymentDTO.getStudentId());
+            student.ifPresent(payment::setStudent);
+        }
         return payment;
     }
 

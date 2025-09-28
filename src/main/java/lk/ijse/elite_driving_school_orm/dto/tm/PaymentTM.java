@@ -1,4 +1,4 @@
-package lk.ijse.elite_driving_school_orm.dto;
+package lk.ijse.elite_driving_school_orm.dto.tm;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class PaymentDTO {
+public class PaymentTM {
     private String paymentId;
     private String amount;
     private String date;

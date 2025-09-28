@@ -17,7 +17,7 @@ public class Payment {
     private String paymentId;
 
     @Column(name = "amount")
-    private double amount;
+    private String amount;
 
     @Column(name = "date")
     private String date;

@@ -13,7 +13,7 @@ public class UpdatePaymentController {
     public ListView courseListView;
     public Label lblAmount;
     public TextField txtAmountPaid;
-    public DatePicker dpDate;
+    public Label lblDate;
     public ComboBox cmbStatus;
     public Button btnUpdate;
     public Button btnCancel;
