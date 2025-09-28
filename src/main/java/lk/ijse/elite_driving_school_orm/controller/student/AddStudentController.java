@@ -1,21 +1,18 @@
 package lk.ijse.elite_driving_school_orm.controller.student;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.elite_driving_school_orm.bo.BOFactory;
 import lk.ijse.elite_driving_school_orm.bo.BOTypes;
-import lk.ijse.elite_driving_school_orm.bo.custom.CourseBO;
 import lk.ijse.elite_driving_school_orm.bo.custom.StudentBO;
 import lk.ijse.elite_driving_school_orm.bo.exception.DuplicateException;
 import lk.ijse.elite_driving_school_orm.dto.CourseDTO;
 import lk.ijse.elite_driving_school_orm.dto.StudentDTO;
 import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -41,7 +38,6 @@ public class AddStudentController implements Initializable {
     public Button btnBack;
 
     private final StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
-    private final CourseBO courseBO = BOFactory.getInstance().getBO(BOTypes.COURSE);
 
     private List<CourseDTO> allCourses = new ArrayList<>();
 

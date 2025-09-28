@@ -8,7 +8,7 @@ import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
 public class UpdateLessonController {
     public AnchorPane ancUpdateLesson;
     public Button btnBack;
-    public TextField txtLessonId;
+    public Label lblLessonId;
     public TextArea txtDescription;
     public ComboBox cmbCourse;
     public Label lblCourse;

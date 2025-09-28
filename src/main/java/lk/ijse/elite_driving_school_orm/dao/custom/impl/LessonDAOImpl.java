@@ -6,6 +6,7 @@ import lk.ijse.elite_driving_school_orm.entity.Instructor;
 import lk.ijse.elite_driving_school_orm.entity.Lesson;
 import lk.ijse.elite_driving_school_orm.entity.Student;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.sql.SQLException;
@@ -29,12 +30,36 @@ public class LessonDAOImpl implements LessonDAO {
 
     @Override
     public String getLastId() throws SQLException {
-        return null;
+        Session session = factoryConfiguration.getSession();
+        try {
+            Query<String> query = session.createQuery(
+                    "SELECT les.id FROM Lesson les ORDER BY les.id DESC",
+                    String.class
+            ).setMaxResults(1);
+            List<String> lessonlist = query.list();
+            if (lessonlist.isEmpty()) {
+                return null;
+            }
+            return lessonlist.get(0);
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public boolean save(Lesson lesson) throws SQLException {
-        return false;
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.persist(lesson);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            transaction.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 
     @Override

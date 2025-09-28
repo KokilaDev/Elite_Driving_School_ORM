@@ -52,10 +52,14 @@
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin></Label>
-                        <TextField fx:id="txtLessonId" stylesheets="@../../css/style.css">
+                        <Label fx:id="lblLessonId" text="L001" textFill="#181a2f">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </HBox.margin></TextField>
+                            </HBox.margin>
+                        </Label>
                     </children>
                 </HBox>
                 <HBox>
