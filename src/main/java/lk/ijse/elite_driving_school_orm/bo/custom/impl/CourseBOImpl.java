@@ -9,6 +9,9 @@ import lk.ijse.elite_driving_school_orm.bo.util.EntityDTOConverter;
 import lk.ijse.elite_driving_school_orm.dao.DAOFactory;
 import lk.ijse.elite_driving_school_orm.dao.DAOTypes;
 import lk.ijse.elite_driving_school_orm.dao.custom.CourseDAO;
+import lk.ijse.elite_driving_school_orm.dao.custom.InstructorDAO;
+import lk.ijse.elite_driving_school_orm.dao.custom.impl.CourseDAOImpl;
+import lk.ijse.elite_driving_school_orm.dao.custom.impl.InstructorDAOImpl;
 import lk.ijse.elite_driving_school_orm.dto.CourseDTO;
 import lk.ijse.elite_driving_school_orm.dto.LessonDTO;
 import lk.ijse.elite_driving_school_orm.entity.Course;
@@ -20,7 +23,11 @@ import java.util.Optional;
 
 public class CourseBOImpl implements CourseBO {
     private final CourseDAO courseDAO = DAOFactory.getInstance().getDAO(DAOTypes.COURSE);
-    private final EntityDTOConverter converter = new EntityDTOConverter();
+    // Assuming you have DAOs initialized
+    InstructorDAO instructorDAO = new InstructorDAOImpl();
+
+    // Pass them to the converter
+    EntityDTOConverter converter = new EntityDTOConverter(courseDAO, instructorDAO);
 
     @Override
     public List<CourseDTO> getAllCourses() throws SQLException {

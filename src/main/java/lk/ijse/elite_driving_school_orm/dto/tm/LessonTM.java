@@ -1,19 +1,17 @@
-package lk.ijse.elite_driving_school_orm.dto;
+package lk.ijse.elite_driving_school_orm.dto.tm;
 
 import lombok.*;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-public class LessonDTO {
+public class LessonTM {
     private String lessonId;
     private String description;
     private String date;
     private String time;
     private String courseId;
     private String instructorId;
-
 }

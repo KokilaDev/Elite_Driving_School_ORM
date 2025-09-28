@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="ancPayment" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elite_driving_school_orm.controller.payment.MainPaymentController">
    <children>
-      <VBox prefHeight="600.0" prefWidth="800.0">
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT">
                <children>

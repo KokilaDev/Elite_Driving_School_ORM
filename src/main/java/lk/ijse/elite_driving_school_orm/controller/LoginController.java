@@ -40,7 +40,7 @@ public class LoginController implements Initializable {
                 if (role.equals(Roles.ADMIN)) {
                     fxmlPath = "/view/dashboard/ADashBoard.fxml";
                 } else {
-                    fxmlPath = "/view/RDashboard.fxml";
+                    fxmlPath = "/view/dashboard/RDashboard.fxml";
                 }
 
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));

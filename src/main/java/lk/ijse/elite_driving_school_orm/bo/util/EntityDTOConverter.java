@@ -1,9 +1,25 @@
 package lk.ijse.elite_driving_school_orm.bo.util;
 
+import lk.ijse.elite_driving_school_orm.dao.custom.CourseDAO;
+import lk.ijse.elite_driving_school_orm.dao.custom.InstructorDAO;
 import lk.ijse.elite_driving_school_orm.dto.*;
 import lk.ijse.elite_driving_school_orm.entity.*;
 
+import java.sql.SQLException;
+import java.util.Optional;
+
 public class EntityDTOConverter {
+
+    private CourseDAO courseDAO;
+    private InstructorDAO instructorDAO;
+
+    public EntityDTOConverter() {}
+    public EntityDTOConverter(CourseDAO courseDAO, InstructorDAO instructorDAO) {
+        this.courseDAO = courseDAO;
+        this.instructorDAO = instructorDAO;
+    }
+
+    // ------------------ Student ------------------
     public StudentDTO getStudentDTO(Student student) {
         StudentDTO studentDTO = new StudentDTO();
         studentDTO.setStudentId(student.getStudentId());
@@ -28,6 +44,7 @@ public class EntityDTOConverter {
         return student;
     }
 
+    // ------------------ Course ------------------
     public CourseDTO getCourseDTO(Course course) {
         CourseDTO courseDTO = new CourseDTO();
         courseDTO.setCourseId(course.getCourseId());
@@ -46,6 +63,7 @@ public class EntityDTOConverter {
         return course;
     }
 
+    // ------------------ Instructor ------------------
     public InstructorDTO getInstructorDTO(Instructor instructor) {
         InstructorDTO instructorDTO = new InstructorDTO();
         instructorDTO.setInstructorId(instructor.getInstructorId());
@@ -66,22 +84,45 @@ public class EntityDTOConverter {
         return instructor;
     }
 
+    // ------------------ Lesson ------------------
     public LessonDTO getLessonDTO(Lesson lesson) {
         LessonDTO lessonDTO = new LessonDTO();
         lessonDTO.setLessonId(lesson.getLessonId());
+        lessonDTO.setDescription(lesson.getDescription());
         lessonDTO.setDate(lesson.getDate());
-        lessonDTO.setTime(lessonDTO.getTime());
+        lessonDTO.setTime(lesson.getTime());
+
+        if (lesson.getCourse() != null) {
+            lessonDTO.setCourseId(lesson.getCourse().getCourseId());
+        }
+        if (lesson.getInstructor() != null) {
+            lessonDTO.setInstructorId(lesson.getInstructor().getInstructorId());
+        }
+
         return lessonDTO;
     }
 
-    public Lesson getLesson(LessonDTO lessonDTO) {
+    public Lesson getLesson(LessonDTO lessonDTO) throws SQLException {
         Lesson lesson = new Lesson();
         lesson.setLessonId(lessonDTO.getLessonId());
+        lesson.setDescription(lessonDTO.getDescription());
         lesson.setDate(lessonDTO.getDate());
         lesson.setTime(lessonDTO.getTime());
+
+        if (lessonDTO.getCourseId() != null) {
+            Optional<Course> course = courseDAO.findById(lessonDTO.getCourseId());
+            course.ifPresent(lesson::setCourse);
+        }
+
+        if (lessonDTO.getInstructorId() != null) {
+            Optional<Instructor> instructor = instructorDAO.findById(lessonDTO.getInstructorId());
+            instructor.ifPresent(lesson::setInstructor);
+        }
+
         return lesson;
     }
 
+    // ------------------ Payment ------------------
     public PaymentDTO getPaymentDTO(Payment payment) {
         PaymentDTO paymentDTO = new PaymentDTO();
         paymentDTO.setPaymentId(payment.getPaymentId());
@@ -100,19 +141,54 @@ public class EntityDTOConverter {
         return payment;
     }
 
-    public StudentCourseDTO getStudentCourseDTO(Student_Course student_course) {
-        return null;
+    // ------------------ StudentCourse ------------------
+    public StudentCourseDTO getStudentCourseDTO(Student_Course studentCourse) {
+        StudentCourseDTO studentCourseDTO = new StudentCourseDTO();
+        studentCourseDTO.setStudentId(studentCourse.getStudent().getStudentId());
+        studentCourseDTO.setCourseId(studentCourse.getCourse().getCourseId());
+        studentCourseDTO.setEnrollDate(studentCourse.getEnrollDate());
+        return studentCourseDTO;
     }
 
-    public Student_Course getStudentCourse(StudentCourseDTO studentCourseDTO) {
-        return null;
+    public Student_Course getStudentCourse(StudentCourseDTO studentCourseDTO) throws SQLException {
+        Student_Course studentCourse = new Student_Course();
+
+        if (studentCourseDTO.getStudentId() != null) {
+            Student student = new Student();
+            student.setStudentId(studentCourseDTO.getStudentId());
+            studentCourse.setStudent(student);
+        }
+
+        if (studentCourseDTO.getCourseId() != null) {
+            Optional<Course> course = courseDAO.findById(studentCourseDTO.getCourseId());
+            course.ifPresent(studentCourse::setCourse);
+        }
+
+        studentCourse.setEnrollDate(studentCourseDTO.getEnrollDate());
+        return studentCourse;
     }
 
-    public CourseInstructorDTO getCourseInstructorDTO(Course_Instructor course_Instructor) {
-        return null;
+    // ------------------ CourseInstructor ------------------
+    public CourseInstructorDTO getCourseInstructorDTO(Course_Instructor courseInstructor) {
+        CourseInstructorDTO courseInstructorDTO = new CourseInstructorDTO();
+        courseInstructorDTO.setCourseId(courseInstructor.getCourse().getCourseId());
+        courseInstructorDTO.setInstructorId(courseInstructor.getInstructor().getInstructorId());
+        return courseInstructorDTO;
     }
 
-    public Course_Instructor getCourseInstructor(CourseInstructorDTO courseInstructorDTO) {
-        return null;
+    public Course_Instructor getCourseInstructor(CourseInstructorDTO courseInstructorDTO) throws SQLException {
+        Course_Instructor courseInstructor = new Course_Instructor();
+
+        if (courseInstructorDTO.getCourseId() != null) {
+            Optional<Course> course = courseDAO.findById(courseInstructorDTO.getCourseId());
+            course.ifPresent(courseInstructor::setCourse);
+        }
+
+        if (courseInstructorDTO.getInstructorId() != null) {
+            Optional<Instructor> instructor = instructorDAO.findById(courseInstructorDTO.getInstructorId());
+            instructor.ifPresent(courseInstructor::setInstructor);
+        }
+
+        return courseInstructor;
     }
 }
