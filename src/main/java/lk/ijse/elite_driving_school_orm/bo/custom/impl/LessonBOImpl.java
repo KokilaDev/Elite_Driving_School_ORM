@@ -2,6 +2,7 @@ package lk.ijse.elite_driving_school_orm.bo.custom.impl;
 
 import lk.ijse.elite_driving_school_orm.bo.custom.LessonBO;
 import lk.ijse.elite_driving_school_orm.bo.exception.DuplicateException;
+import lk.ijse.elite_driving_school_orm.bo.exception.NotFoundException;
 import lk.ijse.elite_driving_school_orm.bo.util.EntityDTOConverter;
 import lk.ijse.elite_driving_school_orm.dao.DAOFactory;
 import lk.ijse.elite_driving_school_orm.dao.DAOTypes;
@@ -11,7 +12,9 @@ import lk.ijse.elite_driving_school_orm.dao.custom.LessonDAO;
 import lk.ijse.elite_driving_school_orm.dao.custom.impl.CourseDAOImpl;
 import lk.ijse.elite_driving_school_orm.dao.custom.impl.InstructorDAOImpl;
 import lk.ijse.elite_driving_school_orm.dto.LessonDTO;
+import lk.ijse.elite_driving_school_orm.dto.StudentDTO;
 import lk.ijse.elite_driving_school_orm.entity.Lesson;
+import lk.ijse.elite_driving_school_orm.entity.Student;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -41,7 +44,7 @@ public class LessonBOImpl implements LessonBO {
     public void saveLesson(LessonDTO lessonDTO) throws DuplicateException, Exception {
         Optional<Lesson> optionalStudent = lessonDAO.findById(lessonDTO.getLessonId());
         if (optionalStudent.isPresent()) {
-            throw new DuplicateException("Student already exists");
+            throw new DuplicateException("Lesson already exists");
         }
 
         Lesson lesson = converter.getLesson(lessonDTO);
@@ -60,5 +63,17 @@ public class LessonBOImpl implements LessonBO {
             return String.format(tablechar +"%03d",nextId);
         }
         return tablechar + "001";
+    }
+
+    @Override
+    public boolean updateLesson(LessonDTO lessonDTO) throws SQLException {
+        Optional<Lesson> optionalLesson = lessonDAO.findById(lessonDTO.getLessonId());
+        if (optionalLesson.isEmpty()) {
+            throw new NotFoundException("Lesson not found");
+        }
+
+        Lesson lesson = converter.getLesson(lessonDTO);
+        boolean isUpdate = lessonDAO.update(lesson);
+        return isUpdate;
     }
 }

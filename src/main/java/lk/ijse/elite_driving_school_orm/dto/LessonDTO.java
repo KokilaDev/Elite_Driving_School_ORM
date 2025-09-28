@@ -2,7 +2,8 @@ package lk.ijse.elite_driving_school_orm.dto;
 
 import lombok.*;
 
-@Data
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -11,9 +12,7 @@ import lombok.*;
 public class LessonDTO {
     private String lessonId;
     private String description;
-    private String date;
+    private LocalDate date;
     private String time;
-    private String courseId;
     private String instructorId;
-
 }

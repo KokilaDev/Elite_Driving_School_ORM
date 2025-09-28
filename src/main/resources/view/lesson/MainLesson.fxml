@@ -38,13 +38,12 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="tblLesson">
+            <TableView fx:id="tblLesson" onMouseClicked="#onClickTable">
               <columns>
                 <TableColumn fx:id="colLessonID" prefWidth="75.0" text="Lesson ID" />
                   <TableColumn fx:id="colDescription" prefWidth="75.0" text="Description" />
                 <TableColumn fx:id="colDate" prefWidth="75.0" text="Date" />
                   <TableColumn fx:id="colTime" prefWidth="75.0" text="Time" />
-                  <TableColumn fx:id="colCourseID" prefWidth="75.0" text="Course ID" />
                   <TableColumn fx:id="colInstructorID" prefWidth="75.0" text="Instructor ID" />
               </columns>
                <columnResizePolicy>

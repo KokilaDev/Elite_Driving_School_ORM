@@ -92,9 +92,6 @@ public class EntityDTOConverter {
         lessonDTO.setDate(lesson.getDate());
         lessonDTO.setTime(lesson.getTime());
 
-        if (lesson.getCourse() != null) {
-            lessonDTO.setCourseId(lesson.getCourse().getCourseId());
-        }
         if (lesson.getInstructor() != null) {
             lessonDTO.setInstructorId(lesson.getInstructor().getInstructorId());
         }
@@ -108,11 +105,6 @@ public class EntityDTOConverter {
         lesson.setDescription(lessonDTO.getDescription());
         lesson.setDate(lessonDTO.getDate());
         lesson.setTime(lessonDTO.getTime());
-
-        if (lessonDTO.getCourseId() != null) {
-            Optional<Course> course = courseDAO.findById(lessonDTO.getCourseId());
-            course.ifPresent(lesson::setCourse);
-        }
 
         if (lessonDTO.getInstructorId() != null) {
             Optional<Instructor> instructor = instructorDAO.findById(lessonDTO.getInstructorId());

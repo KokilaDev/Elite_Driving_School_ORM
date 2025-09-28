@@ -27,8 +27,8 @@ public class Course {
     @Column(name = "fee", length = 10)
     private double fee;
 
-    @OneToMany(mappedBy = "course")
-    private List<Lesson> lessons;
+//    @OneToMany(mappedBy = "course")
+//    private List<Lesson> lessons;
 
     @OneToMany(mappedBy = "course")
     private List<Student_Course> studentCourses;

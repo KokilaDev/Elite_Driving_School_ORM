@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -20,7 +22,7 @@ public class Lesson {
     private String description;
 
     @Column(name = "date")
-    private String date;
+    private LocalDate date;
 
     @Column(name = "time")
     private String time;
@@ -29,9 +31,9 @@ public class Lesson {
 //    @JoinColumn(name = "student_id")
 //    private Student student;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
+//    @ManyToOne
+//    @JoinColumn(name = "course_id")
+//    private Course course;
 
     @ManyToOne
     @JoinColumn(name = "instructor_id")

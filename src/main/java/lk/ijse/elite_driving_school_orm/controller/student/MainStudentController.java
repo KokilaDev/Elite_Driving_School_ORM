@@ -131,12 +131,12 @@ public class MainStudentController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+//        }
 //        else {
 //            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a student to update!");
 //            alert.show();
 //        }
-//    }
+    }
 
     public void btnDelete(ActionEvent actionEvent) {
         Alert alert = new Alert(

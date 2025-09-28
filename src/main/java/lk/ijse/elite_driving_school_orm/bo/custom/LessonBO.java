@@ -15,4 +15,5 @@ public interface LessonBO extends SuperBO {
 
     String getNextId() throws SQLException;
 
+    boolean updateLesson(LessonDTO lessonDTO) throws SQLException;
 }

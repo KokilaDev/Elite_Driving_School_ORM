@@ -64,7 +64,19 @@ public class LessonDAOImpl implements LessonDAO {
 
     @Override
     public boolean update(Lesson lesson) throws SQLException {
-        return false;
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.merge(lesson);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 
     @Override

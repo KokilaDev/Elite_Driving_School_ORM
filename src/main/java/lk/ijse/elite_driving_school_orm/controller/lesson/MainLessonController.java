@@ -3,7 +3,9 @@ package lk.ijse.elite_driving_school_orm.controller.lesson;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +16,7 @@ import lk.ijse.elite_driving_school_orm.dto.tm.LessonTM;
 import lk.ijse.elite_driving_school_orm.util.AuthUtil;
 import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -21,7 +24,7 @@ import java.util.ResourceBundle;
 public class MainLessonController implements Initializable {
 
     private final LessonBO lessonBO = BOFactory.getInstance().getBO(BOTypes.LESSON);
-    private LessonTM lessonTM;
+    private LessonTM selectedLesson;
 
     public AnchorPane ancLesson;
     public Button btnAddNewLesson;
@@ -35,8 +38,6 @@ public class MainLessonController implements Initializable {
     @FXML
     public TableColumn<LessonTM, String> colTime;
     @FXML
-    public TableColumn<LessonTM, String> colCourseID;
-    @FXML
     public TableColumn<LessonTM, String> colInstructorID;
     public Button btnUpdate;
     public Button btnDelete;
@@ -47,7 +48,6 @@ public class MainLessonController implements Initializable {
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
-        colCourseID.setCellValueFactory(new PropertyValueFactory<>("courseId"));
         colInstructorID.setCellValueFactory(new PropertyValueFactory<>("instructorId"));
 
         try {
@@ -95,7 +95,6 @@ public class MainLessonController implements Initializable {
                                 lessonDTO.getDescription(),
                                 lessonDTO.getDate(),
                                 lessonDTO.getTime(),
-                                lessonDTO.getCourseId(),
                                 lessonDTO.getInstructorId()
                         )).toList()
         ));
@@ -107,19 +106,31 @@ public class MainLessonController implements Initializable {
     }
 
     public void btnUpdate(ActionEvent actionEvent) {
-        NavigationUtil.navigateTo(ancLesson, "/view/lesson/UpdateLesson.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/lesson/UpdateLesson.fxml"));
+            Parent root = loader.load();
+
+            UpdateLessonController controller = loader.getController();
+
+            controller.setLessonData(selectedLesson);
+
+            ancLesson.getChildren().clear();
+            ancLesson.getChildren().add(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void btnDelete(ActionEvent actionEvent) {
 
     }
 
-//    public void onClickTable(javafx.scene.input.MouseEvent mouseEvent) {
-//        selectedLesson = tblLesson.getSelectionModel().getSelectedItem();
-//
-//        if (selectedLesson != null) {
-//            btnUpdate.setDisable(false);
-//            btnDelete.setDisable(false);
-//        }
-//    }
+    public void onClickTable(javafx.scene.input.MouseEvent mouseEvent) {
+        selectedLesson = tblLesson.getSelectionModel().getSelectedItem();
+
+        if (selectedLesson != null) {
+            btnUpdate.setDisable(false);
+            btnDelete.setDisable(false);
+        }
+    }
 }

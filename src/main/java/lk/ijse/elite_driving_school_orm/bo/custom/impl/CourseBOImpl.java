@@ -10,7 +10,6 @@ import lk.ijse.elite_driving_school_orm.dao.DAOFactory;
 import lk.ijse.elite_driving_school_orm.dao.DAOTypes;
 import lk.ijse.elite_driving_school_orm.dao.custom.CourseDAO;
 import lk.ijse.elite_driving_school_orm.dao.custom.InstructorDAO;
-import lk.ijse.elite_driving_school_orm.dao.custom.impl.CourseDAOImpl;
 import lk.ijse.elite_driving_school_orm.dao.custom.impl.InstructorDAOImpl;
 import lk.ijse.elite_driving_school_orm.dto.CourseDTO;
 import lk.ijse.elite_driving_school_orm.dto.LessonDTO;
@@ -20,6 +19,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class CourseBOImpl implements CourseBO {
     private final CourseDAO courseDAO = DAOFactory.getInstance().getDAO(DAOTypes.COURSE);
