@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.elite_driving_school_orm.bo.BOFactory;
 import lk.ijse.elite_driving_school_orm.bo.BOTypes;
+import lk.ijse.elite_driving_school_orm.bo.custom.CourseBO;
 import lk.ijse.elite_driving_school_orm.bo.custom.StudentBO;
 import lk.ijse.elite_driving_school_orm.bo.exception.DuplicateException;
 import lk.ijse.elite_driving_school_orm.dto.CourseDTO;
@@ -29,8 +30,8 @@ public class AddStudentController implements Initializable {
     public TextField txtEmail;
     public TextField txtContact;
     public DatePicker datePicker;
-    public ListView courseListView;
-    public ListView selectedCoursesListView;
+    public ListView<String> courseListView;
+    public ListView<String> selectedCoursesListView;
     public Button btnAdd;
     public Button btnRemove;
     public Button btnSave;
@@ -38,6 +39,7 @@ public class AddStudentController implements Initializable {
     public Button btnBack;
 
     private final StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
+    private final CourseBO courseBO = BOFactory.getInstance().getBO(BOTypes.COURSE);
 
     private List<CourseDTO> allCourses = new ArrayList<>();
 
@@ -58,22 +60,7 @@ public class AddStudentController implements Initializable {
         courseListView.setDisable(false);
         selectedCoursesListView.setDisable(false);
 
-//        courseListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-//        selectedCoursesListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-        // sample items (replace with DB load as needed)
-        courseListView.getItems().addAll("Course A", "Course B", "Course C");
-//        try {
-//            List<CourseDTO> courses = courseBO.getAllCourses(); // getAllCourses() should return a list of CourseDTO
-//            for (CourseDTO course : courses) {
-//                courseListView.getItems().add(course.getName()); // or course.getId() + " - " + course.getName()
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            new Alert(Alert.AlertType.ERROR, "Failed to load courses").show();
-//        }
-
-//        loadCoursesFromDB();
+        loadCoursesFromDB();
 
         courseListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             btnAdd.setDisable(newVal == null);
@@ -90,19 +77,19 @@ public class AddStudentController implements Initializable {
         }
     }
 
-//    private void loadCoursesFromDB() {
-//        try {
-//            allCourses = courseBO.getAllCourses();
-//            courseListView.getItems().clear();
-//            for (CourseDTO course : allCourses) {
-//                // Display as "C001 - Driving Basics" or just name
-//                courseListView.getItems().add(course.getId() + " - " + course.getName());
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            new Alert(Alert.AlertType.ERROR, "Failed to load courses").show();
-//        }
-//    }
+    private void loadCoursesFromDB() {
+        try {
+            allCourses = courseBO.getAllCourses();
+            courseListView.getItems().clear();
+            for (CourseDTO course : allCourses) {
+                // Display as "C001 - Course_Name"
+                courseListView.getItems().add(course.getCourseId() + " - " + course.getName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Failed to load courses").show();
+        }
+    }
 
     public void btnBack(ActionEvent actionEvent) {
         NavigationUtil.navigateTo(ancAddStudent, "/view/student/MainStudent.fxml");

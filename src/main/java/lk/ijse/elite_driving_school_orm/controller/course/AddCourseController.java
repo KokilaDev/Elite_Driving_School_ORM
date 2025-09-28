@@ -27,10 +27,10 @@ public class AddCourseController implements Initializable {
     public TextField txtName;
     public TextField txtDuration;
     public TextField txtFee;
-    public ListView lessonsListView;
+    public ListView<String> lessonsListView;
     public Button btnAdd;
     public Button btnRemove;
-    public ListView selectedLessonsListView;
+    public ListView<String> selectedLessonsListView;
     public Button btnSave;
     public Button btnCancel;
 
@@ -39,6 +39,8 @@ public class AddCourseController implements Initializable {
 
     private ObservableList<String> availableLessons = FXCollections.observableArrayList();
     private ObservableList<String> selectedLessons = FXCollections.observableArrayList();
+
+    private List<LessonDTO> allLessons = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,20 +52,7 @@ public class AddCourseController implements Initializable {
         lessonsListView.setDisable(false);
         selectedLessonsListView.setDisable(false);
 
-//        lessonsListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-//        selectedLessonsListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-        lessonsListView.getItems().addAll("Lesson 1", "Lesson 2", "Lesson 3");
-
-//        try {
-//            List<LessonDTO> lessons = lessonBO.getAllLessons();
-//            for (LessonDTO lesson : lessons) {
-//                lessonsListView.getItems().add(lesson.getName());
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            new Alert(Alert.AlertType.ERROR, "Failed to load lessons.").show();
-//        }
+        loadLessonsFromDB();
 
         lessonsListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             btnAdd.setDisable(newVal == null);
@@ -80,6 +69,20 @@ public class AddCourseController implements Initializable {
         }
 
         loadLessons();
+    }
+
+    private void loadLessonsFromDB() {
+        try {
+            allLessons = lessonBO.getAllLessons();
+            lessonsListView.getItems().clear();
+            for (LessonDTO lesson : allLessons) {
+                // Display as "L001 - Lesson_Description"
+                lessonsListView.getItems().add(lesson.getLessonId() + " - " + lesson.getDescription());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Failed to load lessons").show();
+        }
     }
 
     private void loadNextId() {

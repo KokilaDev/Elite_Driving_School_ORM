@@ -8,14 +8,19 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.elite_driving_school_orm.bo.BOFactory;
 import lk.ijse.elite_driving_school_orm.bo.BOTypes;
 import lk.ijse.elite_driving_school_orm.bo.custom.InstructorBO;
+import lk.ijse.elite_driving_school_orm.bo.custom.LessonBO;
 import lk.ijse.elite_driving_school_orm.bo.exception.DuplicateException;
+import lk.ijse.elite_driving_school_orm.dto.CourseDTO;
 import lk.ijse.elite_driving_school_orm.dto.InstructorDTO;
+import lk.ijse.elite_driving_school_orm.dto.LessonDTO;
 import lk.ijse.elite_driving_school_orm.dto.StudentDTO;
 import lk.ijse.elite_driving_school_orm.util.NavigationUtil;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddInstructorController implements Initializable {
@@ -25,15 +30,18 @@ public class AddInstructorController implements Initializable {
     public TextField txtName;
     public TextField txtEmail;
     public TextField txtContact;
-    public ComboBox cmbSpecialty;
-    public ListView lessonsListView;
+    public ComboBox<String> cmbSpecialty;
+    public ListView<String> lessonsListView;
     public Button btnAdd;
     public Button btnRemove;
-    public ListView selectedLessonsListView;
+    public ListView<String> selectedLessonsListView;
     public Button btnSave;
     public Button btnCancel;
 
     private final InstructorBO instructorBO = BOFactory.getInstance().getBO(BOTypes.INSTRUCTOR);
+    private final LessonBO lessonBO = BOFactory.getInstance().getBO(BOTypes.LESSON);
+
+    private List<LessonDTO> allLessons = new ArrayList<>();
 
     private final String namePattern = "^[A-Za-z ]+$";
     private final String emailPattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
@@ -54,22 +62,7 @@ public class AddInstructorController implements Initializable {
         lessonsListView.setDisable(false);
         selectedLessonsListView.setDisable(false);
 
-//        courseListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-//        selectedCoursesListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-        // sample items (replace with DB load as needed)
-        lessonsListView.getItems().addAll("Lesson A", "Lesson B", "Lesson C");
-//        try {
-//            List<CourseDTO> courses = courseBO.getAllCourses(); // getAllCourses() should return a list of CourseDTO
-//            for (CourseDTO course : courses) {
-//                courseListView.getItems().add(course.getName()); // or course.getId() + " - " + course.getName()
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            new Alert(Alert.AlertType.ERROR, "Failed to load courses").show();
-//        }
-
-//        loadCoursesFromDB();
+        loadLessonsFromDB();
 
         lessonsListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             btnAdd.setDisable(newVal == null);
@@ -83,6 +76,20 @@ public class AddInstructorController implements Initializable {
             loadNextId();
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    private void loadLessonsFromDB() {
+        try {
+            allLessons = lessonBO.getAllLessons();
+            lessonsListView.getItems().clear();
+            for (LessonDTO lesson : allLessons) {
+                // Display as "L001 - Lesson_Description"
+                lessonsListView.getItems().add(lesson.getLessonId() + " - " + lesson.getDescription());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Failed to load lessons").show();
         }
     }
 

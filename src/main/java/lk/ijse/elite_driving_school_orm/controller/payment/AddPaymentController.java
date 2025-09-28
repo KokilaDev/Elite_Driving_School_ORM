@@ -9,12 +9,12 @@ public class AddPaymentController {
     public AnchorPane ancAddPayment;
     public Button btnBack;
     public Label lblPaymentID;
-    public ComboBox cmbStudent;
-    public ListView courseListView;
+    public ComboBox<String> cmbStudent;
+    public ListView<String> courseListView;
     public Label lblAmount;
     public TextField txtAmountPaid;
     public Label lblDate;
-    public ComboBox cmbStatus;
+    public ComboBox<String> cmbStatus;
     public Button btnSave;
     public Button btnCancel;
 

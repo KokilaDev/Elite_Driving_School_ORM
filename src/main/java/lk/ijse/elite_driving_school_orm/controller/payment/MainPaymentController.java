@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.elite_driving_school_orm.bo.BOFactory;
 import lk.ijse.elite_driving_school_orm.bo.BOTypes;
@@ -100,5 +101,8 @@ public class MainPaymentController implements Initializable {
 
     public void btnDelete(ActionEvent actionEvent) {
 
+    }
+
+    public void onClickTable(javafx.scene.input.MouseEvent mouseEvent) {
     }
 }
